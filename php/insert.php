@@ -6,7 +6,7 @@
 
     if(isset($tablesStruct[$table])) {
         $insertList = [];
-        $reqStart = "INSERT INTO " . $table . " (";
+        $reqStart = "INSERT INTO {$table} (";
         $reqEnd = ") VALUES (";
         $isFirst = true;
         $qteEmprunts = 0;
@@ -25,11 +25,11 @@
             array_push($insertList, $element);
             if($isFirst) {
                 $isFirst = false;
-                $reqStart = $reqStart . $tableRows;
-                $reqEnd = $reqEnd . "?";
+                $reqStart = "{$reqStart}{$tableRows}";
+                $reqEnd = "{$reqEnd}?";
             } else {
-                $reqStart = $reqStart . ", " . $tableRows;
-                $reqEnd = $reqEnd . ", ?";
+                $reqStart = "{$reqStart}, {$tableRows}";
+                $reqEnd = "{$reqEnd}, ?";
             }
         }
 
@@ -40,7 +40,7 @@
 
             try {
                 $pdo = new PDO($connect);
-                $qteStockQuerys = $pdo->query("SELECT qtyStock, qtyLend FROM Resources WHERE resourceID=" . $resID.";");
+                $qteStockQuerys = $pdo->query("SELECT qtyStock, qtyLend FROM Resources WHERE resourceID={$resID};");
                 foreach($qteStockQuerys as $qteStockQuery) {
                     $qteDispo = $qteStockQuery["qtyStock"];
                     $qteEmprunter = $qteStockQuery["qtyLend"];
@@ -52,11 +52,11 @@
 
             if($qteDispo >= $qteEmprunts) {
                 $pdo = new PDO($connect);
-                $updateReq = $pdo->prepare("UPDATE Resources SET qtyStock=?, qtyLend=? WHERE resourceID='" . $resID."';");
+                $updateReq = $pdo->prepare("UPDATE Resources SET qtyStock=?, qtyLend=? WHERE resourceID={$resID};");
                 $updateReq->execute(array(($qteDispo - $qteEmprunts), $qteEmprunts));
                 $pdo = null;
             } else {
-                header("location: ../tables.php?table=" . $table);
+                header("location: ../tables.php?table={$table}");
                 exit;
             }
         }
@@ -69,7 +69,7 @@
             $req->execute($insertList);
             $req->closeCursor();
             $pdo = null;
-            header("location: ../tables.php?table=" . $table);
+            header("location: ../tables.php?table={$table}");
             exit;
         } catch (PDOException $e) {
             die("Error : " . $e);

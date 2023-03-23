@@ -23,11 +23,11 @@
     <body>
         <header>
             <h1 id="title">Loans Management</h1>
-            <ul>
+            <ul id="list-nav">
                 <?php
                     if ($_SESSION['isLogged']) {
-                        echo '<li class="link"><a>Make a loan</a></li>';
-                        echo '<li class="link"><a >Make a feedback</a></li>';
+                        echo '<li class="link"><a>Borrow</a></li>';
+                        echo '<li class="link"><a >Feedback</a></li>';
                     }
                 ?>
             </ul>
@@ -39,6 +39,7 @@
                             if ($_SESSION['isAdmin']) {
                                 echo '<li><a href="tables.php" id="link-tables">TABLES</a></li>';
                                 echo '<li><a id="link-add-lender">ADD LENDER</a></li>';
+                                echo '<li><a id="link-add-user">ADD USER</a></li>';
                             }
                             echo '<li><a href="./php/logout.php" id="link-logout">LOGOUT</a></li>';
                         } else {
@@ -127,7 +128,7 @@
                 echo '<script>clickOnLinkLogin(true);</script>';
             }
         } else if ($_SESSION['tryLogin']) {
-            echo '<div id="box-popup-login"><p>Welcome '.$_SESSION['user']['name'].' !</p></div>';
+            echo "<div id='box-popup-login'><p>Welcome {$_SESSION['user']['name']} !</p></div>";
         }
         $_SESSION['tryLogin'] = false;
     ?>

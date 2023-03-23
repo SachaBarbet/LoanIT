@@ -2,7 +2,7 @@
     $login = $_POST['id'];
     $password = $_POST['password'];
 
-    $connectUsers = 'sqlite:../data/users-data.sqlite';;
+    $connectUsers = 'sqlite:../data/users-data.sqlite';
 
     $newPasswordHashed = password_hash($password, PASSWORD_DEFAULT);
 

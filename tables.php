@@ -28,12 +28,13 @@
         if(isset($_GET["table"])) {
             require './init.php';
             if (isset($tablesStruct[ucfirst($_GET['table'])])) {
-                print("<body onload='switchTable(\"" . ucfirst(strtolower($_GET["table"])) . "\");'>");
+                $lowerTable = ucfirst(strtolower($_GET['table']));
+                echo "<body onload='switchTable(\"{$lowerTable}\");'>";
             } else {
                 header("location: ./tables.php");
             }
         } else {
-            print("<body>");
+            echo "<body>";
         }
     ?>
         <nav>
@@ -42,9 +43,8 @@
                 <li id="resources-link" class="link" onclick="switchTable('Resources');">RESOURCES</li>
                 <li id="lenders-link" class="link" onclick="switchTable('Lenders');">LENDERS</li>
                 <li id="loans-link" class="link" onclick="switchTable('Loans');">LOANS</li>
-                <li id="loans-link" class="link" onclick="switchTable('Feedbacks');">FEEDBACKS</li>
+                <li id="feedbacks-link" class="link" onclick="switchTable('Feedbacks');">FEEDBACKS</li>
             </ul>
-            <a href="./feedbacks.php" id="bis">FEEDBACK >></a>
         </nav>
 
         <main>
@@ -55,6 +55,6 @@
             </section>
         </main>
 
-        <div id="box-loading"><p></p><div></div></div>
+        <div id="box-loading"><p>Loading data...</p><div></div></div>
     </body>
 </html>

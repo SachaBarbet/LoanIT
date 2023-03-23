@@ -10,9 +10,9 @@
     } catch (PDOException $e) {
         die($e);
     }
-    echo "<option value='' disabled selected hidden>Select " . $tableRow . "</option>";
+    echo "<option value='' disabled selected hidden>Select {$tableRow}</option>";
     foreach($tableIDs as $tableID) {
-        echo "<option value='" . $tableID[$tableRow] . "'>" . $tableID["name"] . "</option>";
+        echo "<option value='{$tableID[$tableRow]}'>{$tableID['name']}</option>";
     }
     echo "</select>";
 ?>

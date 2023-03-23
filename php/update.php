@@ -11,7 +11,7 @@
         exit();
     }
 
-    $reqLine = 'UPDATE ' . $table . ' SET ';
+    $reqLine = "UPDATE {$table} SET ";
 
     $updateList = [];
     $isFirst = true;
@@ -20,9 +20,9 @@
             $element = str_replace("<", "'<'", $_POST[$row]);
             if(!empty($element)) {
                 if(!$isFirst) {
-                    $reqLine = $reqLine . ", ";
+                    $reqLine = "{$reqLine}, ";
                 }
-                $reqLine = $reqLine . $row . " = ?";
+                $reqLine = "{$reqLine}{$row}=?";
                 array_push($updateList, $element);
                 $isFirst = false;
             }
@@ -30,12 +30,12 @@
     }
     
     if(!isset($updateList[0])) {
-        header("location: ../tables.php?table=" . $table);
+        header("location: ../tables.php?table={$table}");
         exit();
     }
 
     $tableNameBis = strtolower(rtrim($table, "s"));
-    $reqLine = $reqLine . " WHERE ". $tableNameBis . "ID=?;";
+    $reqLine = "{$reqLine} WHERE {$tableNameBis} ID=?;";
     array_push($updateList, $rowID);
 
     try {
@@ -44,10 +44,10 @@
         $req->execute($updateList);
         $req->closeCursor();
         $pdo = null;
-        header("location: ../tables.php?table=". $table);
+        header("location: ../tables.php?table={$table}");
         exit;
     } catch (PDOException $e) {
-        die("Error : " . $e);
+        die("Error : {$e}");
     }
 
 ?>

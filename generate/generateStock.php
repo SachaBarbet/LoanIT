@@ -12,7 +12,7 @@
     $count = 0;
 
     foreach ($qteReq as $qte) {
-        echo '<tr><td>'.$qte["name"].'</td><td id="td-in-stock">IN STOCK</td></tr>';
+        echo "<tr><td>{$qte['name']}</td><td id=\"td-in-stock\">IN STOCK</td></tr>";
         $count++;
     }
 

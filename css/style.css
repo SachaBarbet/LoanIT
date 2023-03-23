@@ -1,9 +1,11 @@
 :root {
+    --color-blck: #050505;
     --color-secondary: #c0392b;
     --color-main: #17202a;
     --color-main2: #53779c;
     --color-main3: #6794c2;
-    --color-white: #fbfcfc;
+    --color-white: #EEEEEE;
+    --color-white2: #E0E0E0;
 }
 
 * {
@@ -32,7 +34,6 @@ strong {
     width: 1px;
     background-color: var(--color-main);
     margin: 0 5%;
-    margin-top: 20px;
 }
 
 .box-separator-hori {

@@ -8,7 +8,7 @@
 
     try {
         $pdo = new PDO($connectUsers);
-        $users = $pdo->query("SELECT name, lastname, login, password, type FROM Users WHERE login='" . $id."';");
+        $users = $pdo->query("SELECT name, lastname, login, password, type FROM Users WHERE login={$id};");
         foreach($users as $user) {
             $passwordHashed = $user["password"];
             $userType = $user["type"];
@@ -16,7 +16,7 @@
         }
         $pdo = null;
     } catch (PDOException $e) {
-        die('An error was occured : '. $e);
+        die("An error was occured : {$e}");
     }
 
     if (password_verify($password, $passwordHashed)) {
