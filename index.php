@@ -26,8 +26,8 @@
             <ul>
                 <?php
                     if ($_SESSION['isLogged']) {
-                        echo '<li></li>';
-                        echo '<li></li>';
+                        echo '<li class="link"><a>Make a loan</a></li>';
+                        echo '<li class="link"><a >Make a feedback</a></li>';
                     }
                 ?>
             </ul>
@@ -38,6 +38,7 @@
                         if ($_SESSION['isLogged']) {
                             if ($_SESSION['isAdmin']) {
                                 echo '<li><a href="tables.php" id="link-tables">TABLES</a></li>';
+                                echo '<li><a id="link-add-lender">ADD LENDER</a></li>';
                             }
                             echo '<li><a href="./php/logout.php" id="link-logout">LOGOUT</a></li>';
                         } else {
@@ -95,17 +96,19 @@
                         </table>
                     </div>
                 </article>
-
-                <article id="article-no-solution">
-                    <h2>Resources with a problem and without any solution !</h2>
-                    <table>
-                        <tbody>
-                            <?php
-                                require './generate/generateNoSol.php';
-                            ?>
-                        </tbody>
-                    </table>
-                </article>
+                <?php
+                    if ($_SESSION['isAdmin']) {
+                        echo '<article id="article-no-solution">';
+                        echo '<h2>Resources with a problem and without any solution !</h2>';
+                        echo '<table>';
+                        echo '<tbody>';
+                        require './generate/generateNoSol.php';
+                        echo '</tbody>';
+                        echo '</table>';
+                        echo '</article>';
+                    }
+                ?>
+                
             </section>
         </main>
         
@@ -113,10 +116,13 @@
             <p>developed by BARBET Sacha</p>
         </footer>
     </body>
-    <script src="javascript/login-menu.js"></script>
+    <script src="javascript/loginMenu.js"></script>
     <?php
         if (!$_SESSION['isLogged']) {
             echo '<script src="javascript/login.js"></script>';
+            if ($_SESSION['isAdmin']) {
+                echo '<script src="javascript/addLender.js"></script>';
+            }
             if ($_SESSION['tryLogin']) {
                 echo '<script>clickOnLinkLogin(true);</script>';
             }

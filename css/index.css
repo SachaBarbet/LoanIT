@@ -243,8 +243,8 @@ ul {
     background-color: #5dc05e;
     border-radius: 3px;
     padding: 8px 18px;
-    -webkit-animation: 0.7s ease-in 0.5s alternate loginAnim;
-    animation: 0.7s ease-in 0.5s alternate loginAnim;
+    -webkit-animation: 0.7s alternate paused loginAnim;
+    animation: 0.7s alternate loginAnim;
 }
 
 #box-popup-login p {

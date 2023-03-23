@@ -65,7 +65,7 @@ nav ul li:hover {
     position: fixed;
     height: 100%;
     margin-left: 20%;
-    width: 85%;
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,7 +104,7 @@ nav ul li:hover {
 /*Input Clear*/
 .form-box {
     display: flex;
-    width: 80%;
+    width: 68vw;
     margin-top: 30px;
     border-bottom: var(--color-main) solid 2px;
     border-top: var(--color-main) solid 2px;
@@ -160,9 +160,10 @@ nav ul li:hover {
 table {
     display: block;
     border-collapse: collapse;
-    width: 80%;
+    width: 68vw;
     margin-top: 20px;
-    height: 450px;
+    height: 66vh;
+    min-height: 450px;
     overflow-y: auto;
 }
 
