@@ -1,5 +1,5 @@
 <?php
-    require './init.php';
+    require "./init.php";
 
     try {
         $pdo = new PDO($connectBis);
@@ -12,13 +12,9 @@
     $count = 0;
     foreach ($qteReq as $qte) {
         $count++;
-        if($count > 3) {
-            break;
-        }
-        echo '<tr><td id="td-top-'.$count.'">'.$count.' - '.$qte["name"]. ' Amont Lent : '.$qte["qtyLend"].'</td></tr>';
+        if($count > 3) break;
+        echo "<tr id=\"td-top-{$count}\"><td>{$count} - {$qte['name']}</td><td>Amont Lent : {$qte['qtyLend']}</td></tr>";
     }
 
-    if($count < 1) {
-        echo '<tr><td>NO DATA</td></tr>';
-    }
+    if($count < 1) echo "<tr><td>NO DATA</td><td></td></tr>";
 ?>

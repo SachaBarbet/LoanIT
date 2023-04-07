@@ -3,6 +3,7 @@
 
     $_SESSION['isLogged'] = false;
     $_SESSION['isAdmin'] = false;
+    $_SESSION['isLenderValid'] = false;
     $_SESSION['user'] = ['name' => '', 'lastname' => '', 'login' => ''];
 
     header("location: ../index.php");

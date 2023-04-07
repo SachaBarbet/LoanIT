@@ -1,4 +1,5 @@
 <?php
+    // Si l'utilisateur qui insert est admin, et si la table existe
     $table= $_GET["insertTable"];
     require '../init.php';
 
@@ -6,8 +7,10 @@
 
     if(isset($tablesStruct[$table])) {
         $insertList = [];
+        // Variable qui contient la requete
         $reqStart = "INSERT INTO {$table} (";
         $reqEnd = ") VALUES (";
+
         $isFirst = true;
         $qteEmprunts = 0;
         $resID = "";
@@ -37,7 +40,9 @@
 
             $qteDispo = 0;
             $qteEmprunter = 0;
-
+            
+            // Comme on est en SQLite, on établi les règles en PHP et non SQL alors quand on ajoute un empreint
+            // On prend la quantité empreinté, en l'enlève de la valeur stock et on l'ajoute à la valeur nombre emprunté dans la table ressources
             try {
                 $pdo = new PDO($connect);
                 $qteStockQuerys = $pdo->query("SELECT qtyStock, qtyLend FROM Resources WHERE resourceID={$resID};");

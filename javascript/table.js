@@ -14,7 +14,7 @@ async function getTable(tableID = null) {
 
 async function getUpdate(tableID = null) {
     if (tableID === null) return;
-
+4
     if (document.getElementById("form-update-" + tableID.toLowerCase()) === null) {
         const fetchUpdateForm = await fetch(`../generate/generateUpdate.php?tableName=${tableID}`);
         const updateForm = await fetchUpdateForm.text();
@@ -25,14 +25,14 @@ async function getUpdate(tableID = null) {
 }
 
 async function switchTable(tableID = null) {
-    clearUpdateSection();
     if (tableID === null) return;
 
     if (document.getElementById("table-"+tableID.toLowerCase()) === null) {
         document.getElementById('box-loading').style.display = 'flex';
         await getTable(tableID);
     }
-    if (document.getElementById("form-update-" + tableID.toLowerCase()) === null) await getUpdate(tableID);
+    interactionBar(tableID);
+    //if (document.getElementById("form-update-" + tableID.toLowerCase()) === null) await getUpdate(tableID);
 
     const sectionList = document.getElementsByClassName("section-table");
     for(let i = 0; i < sectionList.length; i++) {
@@ -40,6 +40,6 @@ async function switchTable(tableID = null) {
     }
 
     document.getElementById("p-select").style.display = "none";
-    document.getElementById("table-"+tableID.toLowerCase()).style.display = "flex";
+    document.getElementById("section-"+tableID.toLowerCase()).style.display = "flex";
     document.getElementById('box-loading').style.display = 'none';
 }

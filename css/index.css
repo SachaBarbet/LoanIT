@@ -292,13 +292,12 @@ td {
 
 #article-top tr {
     margin: 3px 0;
+    border-radius: 4px;
 }
 
 #article-top td {
     color: var(--color-white);
-    border-radius: 4px;
-    text-align: center;
-    padding: 3px 5px;
+    padding: 3px 12px;
 }
 
 #td-top-1 {

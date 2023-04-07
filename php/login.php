@@ -8,10 +8,15 @@
 
     try {
         $pdo = new PDO($connectUsers);
-        $users = $pdo->query("SELECT name, lastname, login, password, type FROM Users WHERE login={$id};");
+        $users = $pdo->query("SELECT userID, name, lastname, login, password, type, lenderID FROM Users WHERE login='{$id}';");
         foreach($users as $user) {
-            $passwordHashed = $user["password"];
-            $userType = $user["type"];
+            $passwordHashed = $user['password'];
+            $userType = $user['type'];
+            $lenderID = $user['lenderID'];
+            $userIDsrc = $user['userID'];
+            $userName = $user['name'];
+            $userLastname = $user['lastname'];
+            $userLogin = $user['login'];
             break;
         }
         $pdo = null;
@@ -25,13 +30,30 @@
             include './changePassword.php';
         }
 
+        // Check si l'utilisateur est dans la liste des emprunteurs et donc s'il peut emprunter
+        if (isset($lenderID)) {
+            try {
+                $pdo = new PDO($connect);
+                $users = $pdo->query("SELECT userID FROM Lenders WHERE lenderID={$lenderID};");
+                foreach($users as $user) {
+                    $userLendID = $user["userID"];
+                    break;
+                }
+            } catch (PDOException $e) {
+                die($e);
+            }
+            $_SESSION['isLenderValid'] = $userIDsrc === $userLendID;
+        }
+
         // Mise à jour de la session si l'utilisateur se login
-        if ($userType === 1) $_SESSION['isAdmin'] = true;
+        if ($userType == 1) {
+            $_SESSION['isAdmin'] = true;
+        }
         $_SESSION['isLogged'] = true;
         $_SESSION['user'] = [
-            'name' => $user['name'],
-            'lastname' => $user['lastname'],
-            'login' => $user['login']
+            'name' => $userName,
+            'lastname' => $userLastname,
+            'login' => $userLogin
         ];
     }
     $_SESSION['tryLogin'] = true;

@@ -11,6 +11,7 @@
 
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/tables.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
         <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
@@ -18,7 +19,7 @@
         <link rel="manifest" href="assets/site.webmanifest">
 
         <script src="./javascript/table.js"></script>
-        <script src="./javascript/update.js"></script>
+        <!--<script src="./javascript/update.js"></script>-->
         <noscript>Javascript isn't supported by your browser !</noscript>
 
         <title>Loans Management</title>
@@ -37,24 +38,37 @@
             echo "<body>";
         }
     ?>
-        <nav>
-            <a href="./index.php"><< BACK</a>
-            <ul>
-                <li id="resources-link" class="link" onclick="switchTable('Resources');">RESOURCES</li>
-                <li id="lenders-link" class="link" onclick="switchTable('Lenders');">LENDERS</li>
-                <li id="loans-link" class="link" onclick="switchTable('Loans');">LOANS</li>
-                <li id="feedbacks-link" class="link" onclick="switchTable('Feedbacks');">FEEDBACKS</li>
-            </ul>
-        </nav>
-
+        
         <main>
+            <nav>
+                <div><a href="./index.php"><< BACK</a></div>
+                <ul>
+                    <li id="resources-link" class="link" onclick="switchTable('Resources');">RESOURCES</li>
+                    <li id="lenders-link" class="link" onclick="switchTable('Lenders');">LENDERS</li>
+                    <li id="loans-link" class="link" onclick="switchTable('Loans');">LOANS</li>
+                    <li id="feedbacks-link" class="link" onclick="switchTable('Feedbacks');">FEEDBACKS</li>
+                </ul>
+                <div></div>
+            </nav>
+
             <div id="box-content">
-                <p id="p-select">Select a table to display it !</p>
+                <div id="box-interaction-bar">
+                    <div><a href="#" id="link-refresh" data=""><span class="material-symbols-outlined">refresh</span>REFRESH</a></div>
+                    <div><a href="#" id="link-insert" data=""><span class="material-symbols-outlined">arrow_insert</span>INSERT</a></div>
+                    <div><a href="#" id="link-clear"><span class="material-symbols-outlined">delete</span>CLEAR</a></div>
+                    <form method="post" name="form-clear" action="./php/delete.php" id="form-clear-table">
+                        <input type="hidden" value="" name="table" id="input-clear-table">
+                        <input type="hidden" value="" name="clear" id="input-clear-clear">
+                    </form>
+                </div>
+                <p id="p-select">Select a table to display and manage it !</p>
             </div>
-            <section id="section-update" onclick="clearUpdateSection();">
-            </section>
+
+            <div id="box-update" onclick="clearUpdateSection();">
+            </div>
         </main>
 
         <div id="box-loading"><p>Loading data...</p><div></div></div>
     </body>
+    <script src="./javascript/interactions.js"></script>
 </html>

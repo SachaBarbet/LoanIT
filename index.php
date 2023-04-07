@@ -14,7 +14,6 @@
         <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
         <link rel="manifest" href="assets/site.webmanifest">
 
-        <script src="javascript/cookies.js"></script>
         <noscript>Javascript isn't supported by your browser !</noscript>
 
         <title>Loans Management</title>
@@ -25,7 +24,7 @@
             <h1 id="title">Loans Management</h1>
             <ul id="list-nav">
                 <?php
-                    if ($_SESSION['isLogged']) {
+                    if ($_SESSION['isLogged'] && $_SESSION['isLenderValid']) {
                         echo '<li class="link"><a>Borrow</a></li>';
                         echo '<li class="link"><a >Feedback</a></li>';
                     }
@@ -61,7 +60,7 @@
                         <path fill="#17202A" d="M45.7,-36.8C57.8,-21.4,65,-2.5,62,15.6C59,33.6,45.8,50.7,27.5,60.9C9.3,71.1,-14.1,74.5,-29.9,65.5C-45.7,56.6,-54,35.4,-59.4,13.2C-64.8,-9.1,-67.2,-32.3,-56.9,-47.3C-46.5,-62.3,-23.2,-69,-3.2,-66.5C16.9,-64,33.7,-52.1,45.7,-36.8Z" transform="translate(100 100)" />
                     </svg>
                     <div id="box-svg-content">
-                        <h2>Suuuu</h2>
+                        <h2>Title content</h2>
                         <p>content</p>
                     </div>
                 </article>
@@ -119,6 +118,7 @@
     </body>
     <script src="javascript/loginMenu.js"></script>
     <?php
+        // Ajoute les scripts js en fonction de l'etat de login
         if (!$_SESSION['isLogged']) {
             echo '<script src="javascript/login.js"></script>';
             if ($_SESSION['isAdmin']) {
