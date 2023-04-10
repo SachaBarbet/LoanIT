@@ -27,6 +27,10 @@
         "Feedbacks" => ["feedbackID", "loanID", "date", "feedback", "solution"]
     ];
 
-    $tablesStructNoID = new ArrayObject($tablesStruct);
-    foreach($tablesStructNoID as $tableRows) { array_shift($tableRows); }
+    $tablesStructNoID = [
+        "Resources" => ["name", "designation", "qtyStock", "qtyLend"],
+        "Lenders" => ["name", "observation", "userID", "activeLoan"],
+        "Loans" => ["resourceID", "qtyLent","lenderID", "startDate", "endDate", "trueEndDate"],
+        "Feedbacks" => ["loanID", "date", "feedback", "solution"]
+    ];
 ?>

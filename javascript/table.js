@@ -14,7 +14,7 @@ async function getTable(tableID = null) {
 
 async function getUpdate(tableID = null) {
     if (tableID === null) return;
-4
+
     if (document.getElementById("form-update-" + tableID.toLowerCase()) === null) {
         const fetchUpdateForm = await fetch(`../generate/generateUpdate.php?tableName=${tableID}`);
         const updateForm = await fetchUpdateForm.text();
@@ -39,7 +39,15 @@ async function switchTable(tableID = null) {
         sectionList[i].style.display = "none";
     }
 
+    if (document.getElementById('form-insert') != null) document.getElementById("form-insert").remove();
     document.getElementById("p-select").style.display = "none";
     document.getElementById("section-"+tableID.toLowerCase()).style.display = "flex";
     document.getElementById('box-loading').style.display = 'none';
+    console.log(window.history.)
+}
+
+function clearTable(tableID) {
+    if (document.getElementById("section-"+tableID.toLowerCase()) != null) document.getElementById("section-"+tableID.toLowerCase()).remove();
+
+    switchTable(tableID);
 }

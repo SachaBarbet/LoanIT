@@ -108,7 +108,6 @@
                         echo '</article>';
                     }
                 ?>
-                
             </section>
         </main>
         

@@ -1,5 +1,6 @@
 <?php
     require '../init.php';
+    if (!$_SESSION['isAdmin']) header('location: ./index.php');
 
     // On vérifie que le nom de la table est défini dans l'url et quelle existe
     if(isset($_GET['tableName']) && isset($tablesStruct[$_GET['tableName']])) {

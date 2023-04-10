@@ -1,11 +1,10 @@
 <?php
     // Si l'utilisateur qui insert est admin, et si la table existe
-    $table= $_GET["insertTable"];
     require '../init.php';
-
     if (!$_SESSION['isAdmin']) header('location: ../index.php');
 
-    if(isset($tablesStruct[$table])) {
+    if(isset($_POST["table"]) && isset($tablesStruct[$_POST["table"]])) {
+        $table = $_POST["table"];
         $insertList = [];
         // Variable qui contient la requete
         $reqStart = "INSERT INTO {$table} (";
@@ -16,7 +15,7 @@
         $resID = "";
         foreach($tablesStructNoID[$table] as $tableRows) {
             if(!isset($_POST[$tableRows])) continue;
-            $element = str_replace("<", "'<'", $_POST[$tableRows]);
+            $element = htmlspecialchars($_POST[$tableRows]);
             if($table === "Loans") {
                 if($tableRows === "qtyLent") {
                     $qteEmprunts = $element;

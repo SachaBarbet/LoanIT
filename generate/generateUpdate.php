@@ -1,5 +1,7 @@
 <?php
     require '../init.php';
+    if (!$_SESSION['isAdmin']) header('location: ./index.php');
+    
     # Pour chaque table
     if(isset($_GET["tableName"]) && isset($tablesStructNoID[$_GET["tableName"]])){
         $tableName = $_GET["tableName"];

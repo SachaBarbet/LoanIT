@@ -103,7 +103,7 @@ main {
     height: 100%;
 }
 
-#box-interaction-bar a {
+#box-interaction-bar button {
     width: 33%;
     padding: 5px;
     font-size: small;
@@ -118,18 +118,25 @@ main {
 }
 
 #link-refresh:hover {
-    transition: 0.2s;
-    border: dashed 2px blue;
+    --color-click: blue; 
 }
 
 #link-insert:hover {
-    transition: 0.2s;
-    border: dashed 2px green;
+    --color-click: green;
 }
 
 #link-clear:hover {
+    --color-click: red;
+}
+
+#box-interaction-bar button:hover {
     transition: 0.2s;
-    border: dashed 2px red;
+    border: dashed 2px var(--color-click);
+}
+
+#box-interaction-bar button:active {
+    transition: 0.2s;
+    border: solid 2px var(--color-click);
 }
 
 #form-clear-table {
@@ -217,6 +224,51 @@ th::first-letter {
 
 select option {
     color: var(--color-main);
+}
+
+/*Insert*/
+#form-insert {
+    width: 68vw;
+    display: flex;
+    margin-top: 25px;
+    padding-block: 5px;
+    flex-wrap: wrap;
+    border-bottom: 1px var(--color-main) solid;
+}
+
+#form-insert > input, #form-insert select, #form-insert div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+#form-insert > div > p {
+    text-align: center;
+    margin-inline: 5px;
+    font-size: medium;
+    font-weight: 400;
+}
+
+#form-insert div {
+    cursor: pointer;
+    margin: 10px;
+    flex: 0.5;
+}
+
+#form-insert div:nth-child(odd) {
+    background-color: red;
+}
+
+#form-insert div:nth-child(even) {
+    background-color: green;
+}
+
+#form-insert input[name='table'] {
+    flex: none;
 }
 
 /*Updates*/
