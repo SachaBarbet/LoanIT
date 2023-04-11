@@ -26,3 +26,15 @@ function updateBox(table, rowID) {
         rowInputList[i].value = rowID;
     }
 }
+
+async function getUpdate(tableID = null) {
+    if (tableID === null) return;
+
+    if (document.getElementById("form-update-" + tableID.toLowerCase()) === null) {
+        const fetchUpdateForm = await fetch(`../generate/generateUpdate.php?tableName=${tableID}`);
+        const updateForm = await fetchUpdateForm.text();
+    
+        const sectionUpdate = document.getElementById("section-update").innerHTML;
+        document.getElementById("section-update").innerHTML = sectionUpdate + updateForm;
+    }
+}

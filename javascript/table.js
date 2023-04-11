@@ -12,18 +12,6 @@ async function getTable(tableID = null) {
     }
 }
 
-async function getUpdate(tableID = null) {
-    if (tableID === null) return;
-
-    if (document.getElementById("form-update-" + tableID.toLowerCase()) === null) {
-        const fetchUpdateForm = await fetch(`../generate/generateUpdate.php?tableName=${tableID}`);
-        const updateForm = await fetchUpdateForm.text();
-    
-        const sectionUpdate = document.getElementById("section-update").innerHTML;
-        document.getElementById("section-update").innerHTML = sectionUpdate + updateForm;
-    }
-}
-
 async function switchTable(tableID = null) {
     if (tableID === null) return;
 
@@ -31,7 +19,7 @@ async function switchTable(tableID = null) {
         document.getElementById('box-loading').style.display = 'flex';
         await getTable(tableID);
     }
-    interactionBar(tableID);
+    setInteractionBar(tableID);
     //if (document.getElementById("form-update-" + tableID.toLowerCase()) === null) await getUpdate(tableID);
 
     const sectionList = document.getElementsByClassName("section-table");
@@ -43,11 +31,12 @@ async function switchTable(tableID = null) {
     document.getElementById("p-select").style.display = "none";
     document.getElementById("section-"+tableID.toLowerCase()).style.display = "flex";
     document.getElementById('box-loading').style.display = 'none';
-    console.log(window.history.)
+    // on doit changer l'url quand on change de table
+    let url = window.location.href.split('/');
+    window.history.pushState({}, '', `${url[0]}/tables.php?table=${tableID}`);
 }
 
 function clearTable(tableID) {
     if (document.getElementById("section-"+tableID.toLowerCase()) != null) document.getElementById("section-"+tableID.toLowerCase()).remove();
-
     switchTable(tableID);
 }

@@ -161,6 +161,7 @@ table {
     max-height: 66vh;
     overflow-y: auto;
     box-shadow: 0 1px 5px var(--color-blck);
+    z-index: 5;
 }
 
 thead {
@@ -228,12 +229,21 @@ select option {
 
 /*Insert*/
 #form-insert {
-    width: 68vw;
+    width: calc(68vw - 2px);
     display: flex;
-    margin-top: 25px;
+    align-items: center;
+    margin-top: -100px;
     padding-block: 5px;
     flex-wrap: wrap;
-    border-bottom: 1px var(--color-main) solid;
+    box-shadow: 0px 0px 2px var(--color-main);
+    border-radius: 3px;
+    background-color: var(--color-white);
+    transition: all 0.5s ease-in-out;
+    z-index: 4;
+}
+
+#form-insert.show {
+    margin-top: 10px;
 }
 
 #form-insert > input, #form-insert select, #form-insert div {
@@ -256,15 +266,15 @@ select option {
 #form-insert div {
     cursor: pointer;
     margin: 10px;
-    flex: 0.5;
+    flex: 0.2;
 }
 
 #form-insert div:nth-child(odd) {
-    background-color: red;
+    background-color: #cc0000;
 }
 
 #form-insert div:nth-child(even) {
-    background-color: green;
+    background-color: #00a601;
 }
 
 #form-insert input[name='table'] {

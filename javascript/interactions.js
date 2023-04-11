@@ -1,5 +1,5 @@
 // ------- FONCTIONS
-function interactionBar(tableName) {
+function setInteractionBar(tableName) {
     // On affiche la bar si ce n'est pas déjà fait
     if(document.getElementById('box-interaction-bar').style.display != 'flex') document.getElementById('box-interaction-bar').style.display = 'flex';
 
@@ -42,11 +42,21 @@ function clickInsert() {
     // On rajoute la ligne dans le tBody
     const table = document.getElementById(`section-${tableNameClick.toLowerCase()}`);
     table.appendChild(insertForm);
+
+    setTimeout(() => {
+        insertForm.classList.add('show');
+    }, 100);
 }
 
 // -- CLOSE INSERT
 function closeInsert() {
-    if (document.getElementById('form-insert') != null) document.getElementById('form-insert').remove();
+    const insertForm = document.getElementById('form-insert');
+    if (insertForm != null) {
+        insertForm.classList.remove('show');
+        setTimeout(() => {
+            insertForm.remove();
+        }, 500);
+    }
 }
 
 // -- VALID INSERT

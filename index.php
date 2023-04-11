@@ -8,6 +8,7 @@
 
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
         <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
@@ -127,7 +128,8 @@
                 echo '<script>clickOnLinkLogin(true);</script>';
             }
         } else if ($_SESSION['tryLogin']) {
-            echo "<div id='box-popup-login'><p>Welcome {$_SESSION['user']['name']} !</p></div>";
+            echo "<div id='box-popup-login'><span class='material-symbols-outlined'>waving_hand</span><p>Welcome {$_SESSION['user']['name']} !</p></div>";
+            echo "<script>welcomeMsg();</script>";
         }
         $_SESSION['tryLogin'] = false;
     ?>
