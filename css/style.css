@@ -2,8 +2,8 @@
     --color-blck: #050505;
     --color-secondary: #c0392b;
     --color-main: #17202a;
-    --color-main2: #53779c;
-    --color-main3: #6794c2;
+    --color-main2: #e0e5e9;
+    --color-main3: #c2d2e2;
     --color-white: #EEEEEE;
     --color-white2: #E0E0E0;
 }
@@ -45,4 +45,8 @@ strong {
 
 button, input[type='submit'] {
     box-sizing: content-box;
+}
+
+.blur {
+    filter: blur(4px);
 }

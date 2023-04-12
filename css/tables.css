@@ -11,7 +11,7 @@ nav {
     display: flex;
     align-items: center;
     flex-direction: column;
-    box-shadow: 1px 0 5px var(--color-blck);
+    box-shadow: 0px 0 5px var(--color-blck);
     background-color: var(--color-white);
     z-index: 10;
     background-color: var(--color-white);
@@ -93,6 +93,7 @@ main {
     align-items: center;
     background-color: var(--color-white);
     box-shadow: 0px 0px 5px var(--color-blck);
+    z-index: 99999;
 }
 
 #box-interaction-bar div {
@@ -148,10 +149,14 @@ main {
 .section-table {
     height: 100%;
     width: 100%;
-    margin-top: 100px;
-    display: flex;
+    margin-top: max(75px, 5vh);
+    display: none;
     align-items: center;
     flex-direction: column;
+}
+
+.section-table.show {
+    display: flex;
 }
 
 table {
@@ -229,11 +234,12 @@ select option {
 
 /*Insert*/
 #form-insert {
-    width: calc(68vw - 2px);
+    width: calc(67vw - 2px);
     display: flex;
     align-items: center;
+    justify-content: space-around;
     margin-top: -100px;
-    padding-block: 5px;
+    padding: 8px 5px;
     flex-wrap: wrap;
     box-shadow: 0px 0px 2px var(--color-main);
     border-radius: 3px;
@@ -246,8 +252,15 @@ select option {
     margin-top: 10px;
 }
 
+#form-insert > input, #form-insert select {
+    max-width: 140px;
+    height: 30px;
+}
+#form-insert select {
+    cursor: pointer;
+}
+
 #form-insert > input, #form-insert select, #form-insert div {
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -266,7 +279,6 @@ select option {
 #form-insert div {
     cursor: pointer;
     margin: 10px;
-    flex: 0.2;
 }
 
 #form-insert div:nth-child(odd) {
@@ -282,19 +294,103 @@ select option {
 }
 
 /*Updates*/
+#section-update {
+    position: fixed;
+    height: 100vh;
+    width: 25vw;
+    right: -25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--color-white);
+    box-shadow: 0px 0 5px var(--color-blck);
+    z-index: 8;
+    transition: all 0.5s ease-in-out;
+}
+
+#section-update.show {
+    right: 0;
+}
+
+#section-update h3 {
+    flex: 0.8;
+    width: 100%;
+    text-align: center;
+    font-size: medium;
+    font-weight: 400;
+}
+
+#section-update div {
+    width: 100%;
+    flex: 1;
+}
+
+#section-update .first button {
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 23px;
+    height: 24px;
+    border-radius: 50%;
+    padding: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid var(--color-white);
+}
+
+#section-update .first button:hover {
+    border: 1px solid var(--color-blck);
+}
+
+#section-update form {
+    width: 100%;
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5vw;
+    padding-top: 15vh;
+}
+
+#section-update form input, #section-update form select {
+    height: max(30px, 2vh);
+    padding-inline: 5px;
+    max-width: 15vw;
+}
+
+#section-update .last {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#section-update .last button {
+    width: 60%;
+    padding: 13px;
+    border-radius: 3px;
+    color: var(--color-blck);
+    box-sizing: content-box;
+    background-color: #00a601;
+    cursor: pointer;
+}
 
 /*Loading screen display when first init a table*/
 #box-loading {
     position: absolute;
-    height: 100%;
-    width: 80%;
-    margin-left: 20%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 20vw;
     background-color: var(--color-white2);
     display: none;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     z-index: 100;
+    transition: all 0.5s ease-in-out;
+}
+
+#box-loading.show {
+    display: flex;
 }
 
 #box-loading p {
@@ -316,6 +412,44 @@ select option {
 #box-loading:nth-child(1) {
     animation-delay: -0.90s;
 }
+
+#p-select {
+    display: none;
+}
+
+#p-select.show {
+    display: flex;
+}
+
+/*BOX CLEAR CONFIRM*/
+/* #box-clear-confirm {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#box-clear-confirm div {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#box-clear-confirm > div {
+    background-color: var(--color-white2);
+    flex-direction: column;
+}
+
+#box-clear-confirm div p {
+    max-width: 170px;
+    margin: 10px;
+} */
 
 @keyframes rotateLoading {
     0% {

@@ -1,31 +1,27 @@
 <?php
-    $table = $_POST["table"];
-    $rowID = $_POST["rowID"];
-
     require '../init.php';
 
     if (!$_SESSION['isAdmin']) header('location: ../index.php');
 
-    if(!isset($table)) {
+    if(!isset($_POST["table"]) || !isset($tablesStruct[$_POST["table"]])) {
         header("location: ../tables.php");
         exit();
     }
+
+    $table = $_POST["table"];
+    $rowID = $_POST["rowID"];
 
     $reqLine = "UPDATE {$table} SET ";
 
     $updateList = [];
     $isFirst = true;
     foreach($tablesStructNoID[$table] as $row) {
-        if(isset($_POST[$row])) {
-            $element = str_replace("<", "'<'", $_POST[$row]);
-            if(!empty($element)) {
-                if(!$isFirst) {
-                    $reqLine = "{$reqLine}, ";
-                }
-                $reqLine = "{$reqLine}{$row}=?";
-                array_push($updateList, $element);
-                $isFirst = false;
-            }
+        if(isset($_POST[$row]) && !empty($_POST[$row])) {
+            $element = htmlspecialchars($_POST[$row]);
+            if(!$isFirst) {$reqLine .= ", ";}
+            $reqLine .= "{$row}=?";
+            array_push($updateList, $element);
+            $isFirst = false;
         }
     }
     
@@ -35,7 +31,7 @@
     }
 
     $tableNameBis = strtolower(rtrim($table, "s"));
-    $reqLine = "{$reqLine} WHERE {$tableNameBis} ID=?;";
+    $reqLine .= " WHERE {$tableNameBis}ID=?;";
     array_push($updateList, $rowID);
 
     try {

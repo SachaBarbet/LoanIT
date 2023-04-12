@@ -1,40 +1,25 @@
-var isOverred = false;
-
-function updateFormOverred() {
-    isOverred = true;
+// Affiche la section update ET mais l'id de la ligne à modifier dans l'input correspondant
+function showUpdate(rowID) {
+    document.getElementById("input-update-row").setAttribute('value', rowID);
+    document.getElementById("title-update").innerHTML = `Edit row with ID : ${rowID}`;
+    document.getElementById("section-update").classList.add('show');
 }
 
-function updateFormNotOverred() {
-    isOverred = false;
+function hideUpdate() {
+    document.getElementById("section-update").classList.remove('show');
 }
 
-function clearUpdateSection() {
-    if (!isOverred) document.getElementById("section-update").style.display = "none";
+// Se lance à chaque changement de table. Met à jour le contenu de la section update
+function setUpdate(tableID) {
+    // On clear la section et on ajoute l'entete
+    document.getElementById("section-update").innerHTML = `<div class="first"><button onclick="hideUpdate();"><span class="material-symbols-outlined">close</span></button></div><h3 id='title-update'></h3>`;
+    //Form
+    fetch(`../generate/generateUpdate.php?tableName=${tableID}`).then(fetchVal => {
+        fetchVal.text().then(value => document.getElementById("section-update").innerHTML += value);
+    });
+    // le bouton edit est dans le code php
 }
 
-function updateBox(table, rowID) {
-    document.getElementById("section-update").style.display = "flex";
-
-    const updateFormList = document.getElementsByClassName("form-update");
-    for (let i = 0; i < updateFormList.length; i++) {
-        updateFormList[i].style.display = "none";
-    }
-
-    document.getElementById("form-update-" + table.toLowerCase()).style.display = "flex";
-    const rowInputList = document.getElementsByClassName("input-update-row");
-    for (let i = 0; i < rowInputList.length; i++) {
-        rowInputList[i].value = rowID;
-    }
-}
-
-async function getUpdate(tableID = null) {
-    if (tableID === null) return;
-
-    if (document.getElementById("form-update-" + tableID.toLowerCase()) === null) {
-        const fetchUpdateForm = await fetch(`../generate/generateUpdate.php?tableName=${tableID}`);
-        const updateForm = await fetchUpdateForm.text();
-    
-        const sectionUpdate = document.getElementById("section-update").innerHTML;
-        document.getElementById("section-update").innerHTML = sectionUpdate + updateForm;
-    }
+function validUpdate() {
+    document.forms['form-update'].submit();
 }

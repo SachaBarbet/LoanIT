@@ -15,22 +15,26 @@ async function getTable(tableID = null) {
 async function switchTable(tableID = null) {
     if (tableID === null) return;
 
-    if (document.getElementById("table-"+tableID.toLowerCase()) === null) {
-        document.getElementById('box-loading').style.display = 'flex';
+    if (document.getElementById("table-" + tableID.toLowerCase()) === null) {
+        document.getElementById('box-loading').classList.add('show');
         await getTable(tableID);
     }
+    
     setInteractionBar(tableID);
-    //if (document.getElementById("form-update-" + tableID.toLowerCase()) === null) await getUpdate(tableID);
+    setUpdate(tableID);
 
     const sectionList = document.getElementsByClassName("section-table");
     for(let i = 0; i < sectionList.length; i++) {
-        sectionList[i].style.display = "none";
+        sectionList[i].classList.remove('show');
     }
 
     if (document.getElementById('form-insert') != null) document.getElementById("form-insert").remove();
-    document.getElementById("p-select").style.display = "none";
-    document.getElementById("section-"+tableID.toLowerCase()).style.display = "flex";
-    document.getElementById('box-loading').style.display = 'none';
+    document.getElementById("p-select").classList.remove('show');
+    document.getElementById("section-"+tableID.toLowerCase()).classList.add('show'); // erreur ici
+    setTimeout(() => {
+        document.getElementById('box-loading').classList.remove('show');
+    }, 200);
+    
     // on doit changer l'url quand on change de table
     let url = window.location.href.split('/');
     window.history.pushState({}, '', `${url[0]}/tables.php?table=${tableID}`);

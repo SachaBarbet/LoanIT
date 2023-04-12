@@ -17,9 +17,6 @@
         <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
         <link rel="manifest" href="assets/site.webmanifest">
-        <script src="./javascript/table.js"></script>
-        <script src="./javascript/interactions.js"></script>
-        <!--<script src="./javascript/update.js"></script>-->
         <noscript>Javascript isn't supported by your browser !</noscript>
 
         <title>Loans Management</title>
@@ -56,19 +53,21 @@
                     <div><button id="link-refresh" data="" onclick="clickRefresh();"><span class="material-symbols-outlined">refresh</span>REFRESH</button></div>
                     <div><button id="link-insert" data="" onclick="clickInsert();"><span class="material-symbols-outlined">add</span>INSERT</button></div>
                     <div><button id="link-clear" onclick="clickClear();"><span class="material-symbols-outlined">delete</span>CLEAR</button></div>
-                    <form method="post" name="form-clear" action="./php/delete.php" id="form-clear-table">
+                    <form method="post" action="./php/delete.php" id="form-clear-table">
                         <input type="hidden" value="" name="table" id="input-clear-table">
                         <input type="hidden" value="" name="clear" id="input-clear-clear">
                     </form>
                 </div>
-                <p id="p-select">Select a table to display and manage it !</p>
+                <p id="p-select" class="show">Select a table to display and manage it !</p>
             </div>
 
-            <div id="box-update" onclick="clearUpdateSection();">
-            </div>
+            <section id="section-update">                
+            </section>
         </main>
 
         <div id="box-loading"><p>Loading data...</p><div></div></div>
     </body>
-    
+    <script src="./javascript/update.js"></script>
+    <script src="./javascript/table.js"></script>
+    <script src="./javascript/interactions.js"></script>
 </html>

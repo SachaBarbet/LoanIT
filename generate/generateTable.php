@@ -37,7 +37,7 @@
                 $line .= "<td>{$cell}</td>";
             }
             // La cellule avec les boutons de modifications
-            $line .= "<td class='td-button'><img src='./assets/images/pencil.png' class='image-update' onclick='updateBox(\"{$firstLetterTableName}\", \"{$cellID}\");' /><form action='./php/delete.php' method='post'><input type='hidden' name='deleteID' value='{$cellID}'><input type='hidden' name='table' value='{$firstLetterTableName}'><button class='button-sup' type='submit'><img src='./assets/images/delete.png' class='image-delete'></button></form></td>";
+            $line .= "<td class='td-button'><img src='./assets/images/pencil.png' class='image-update' onclick=\"showUpdate('{$cellID}');\"/><form action='./php/delete.php' method='post'><input type='hidden' name='deleteID' value='{$cellID}'><input type='hidden' name='table' value='{$firstLetterTableName}'><button class='button-sup' type='submit'><img src='./assets/images/delete.png' class='image-delete'></button></form></td>";
             $line .= "</tr>";
             array_push($tableLines, $line);
         }
