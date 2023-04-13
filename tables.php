@@ -1,7 +1,6 @@
 <?php require 'init.php';
     if (!$_SESSION['isAdmin']) header('location: ./index.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -64,8 +63,8 @@
             <section id="section-update">                
             </section>
         </main>
-
         <div id="box-loading"><p>Loading data...</p><div></div></div>
+        <div id="box-clear-background"><div id="box-clear"><p>You are about to clear this table !</p><div><button onclick="validClear();">CLEAR</button><button onclick="cancelClear();">CANCEL</button></div></div></div>
     </body>
     <script src="./javascript/update.js"></script>
     <script src="./javascript/table.js"></script>

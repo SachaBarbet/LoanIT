@@ -10,6 +10,8 @@ header {
     background-color: var(--color-main);
     box-shadow: rgba(0, 0, 0, 0.15) 0px -1px 1px;
     box-shadow: 0px 1px 3px var(--color-main);
+    filter: blur(0px);
+    transition: all 0.5s ease-in-out;
 }
 
 /*Header*/
@@ -113,6 +115,8 @@ main {
     justify-content: space-between;
     align-items: center;
     overflow: auto;
+    filter: blur(0px);
+    transition: all 0.5s ease-in-out;
 }
 
 main section {
@@ -166,14 +170,21 @@ main section {
 
 /*Login Box*/
 #box-login {
-    background-color: #F9F9F9;
+    background-color: rgba(200, 200, 200, 0.50);
     position: fixed;
     height: 100%;
     width: 100%;
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 50;
-    background-color: var(--color-white);
+    transition: all 0.5s ease-in-out;
+    opacity: 0.0;
+}
+
+#box-login.show {
+    opacity: 1.0;
+    display: flex;
 }
 
 #box-login form {

@@ -66,5 +66,17 @@ function validInsert() {
 
 // ----- CLEAR
 function clickClear() {
+    document.getElementById('box-clear-background').classList.add('show');
+    document.querySelector('nav').classList.add('blur');
+    document.getElementById('box-content').classList.add('blur');
+}
+
+function cancelClear() {
+    document.getElementById('box-clear-background').classList.remove('show');
+    document.querySelector('nav').classList.remove('blur');
+    document.getElementById('box-content').classList.remove('blur');
+}
+
+function validClear() {
     document.forms['form-clear-table'].submit();
 }

@@ -30,12 +30,12 @@ async function switchTable(tableID = null) {
 
     if (document.getElementById('form-insert') != null) document.getElementById("form-insert").remove();
     document.getElementById("p-select").classList.remove('show');
-    document.getElementById("section-"+tableID.toLowerCase()).classList.add('show'); // erreur ici
+    document.getElementById("section-"+tableID.toLowerCase()).classList.add('show');
     setTimeout(() => {
         document.getElementById('box-loading').classList.remove('show');
     }, 200);
     
-    // on doit changer l'url quand on change de table
+    // on doit changer l'url quand on change de table, pour que le reload de la table soit plus simple
     let url = window.location.href.split('/');
     window.history.pushState({}, '', `${url[0]}/tables.php?table=${tableID}`);
 }

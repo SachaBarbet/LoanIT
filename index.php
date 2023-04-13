@@ -26,8 +26,8 @@
             <ul id="list-nav">
                 <?php
                     if ($_SESSION['isLogged'] && $_SESSION['isLenderValid']) {
-                        echo '<li class="link"><a>Borrow</a></li>';
-                        echo '<li class="link"><a >Feedback</a></li>';
+                        echo '<li class="link"><a>BORROW</a></li>';
+                        echo '<li class="link"><a >FEEDBACK</a></li>';
                     }
                 ?>
             </ul>
@@ -115,22 +115,22 @@
         <footer>
             <p>developed by BARBET Sacha</p>
         </footer>
+        <script src="javascript/loginMenu.js"></script>
+        <?php
+            // Ajoute les scripts js en fonction de l'etat de login
+            if (!$_SESSION['isLogged']) {
+                echo '<script src="javascript/login.js"></script>';
+                if ($_SESSION['isAdmin']) {
+                    echo '<script src="javascript/addLender.js"></script>';
+                }
+                if ($_SESSION['tryLogin']) {
+                    echo '<script>clickOnLinkLogin(true);</script>';
+                }
+            } else if ($_SESSION['tryLogin']) {
+                echo "<div id='box-popup-login'><span class='material-symbols-outlined'>waving_hand</span><p>Welcome {$_SESSION['user']['name']} !</p></div>";
+                echo "<script>welcomeMsg();</script>";
+            }
+            $_SESSION['tryLogin'] = false;
+        ?>
     </body>
-    <script src="javascript/loginMenu.js"></script>
-    <?php
-        // Ajoute les scripts js en fonction de l'etat de login
-        if (!$_SESSION['isLogged']) {
-            echo '<script src="javascript/login.js"></script>';
-            if ($_SESSION['isAdmin']) {
-                echo '<script src="javascript/addLender.js"></script>';
-            }
-            if ($_SESSION['tryLogin']) {
-                echo '<script>clickOnLinkLogin(true);</script>';
-            }
-        } else if ($_SESSION['tryLogin']) {
-            echo "<div id='box-popup-login'><span class='material-symbols-outlined'>waving_hand</span><p>Welcome {$_SESSION['user']['name']} !</p></div>";
-            echo "<script>welcomeMsg();</script>";
-        }
-        $_SESSION['tryLogin'] = false;
-    ?>
 </html>

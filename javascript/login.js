@@ -7,7 +7,9 @@ document.getElementById('link-login').addEventListener('click', () => {
 function clickOnLinkLogin(isFailed = false) {
     let boxLogin = document.getElementById('box-login');
     if (boxLogin === null) boxLogin = createBoxLogin(isFailed);
-    boxLogin.style.display = 'flex';
+    document.querySelector('header').classList.add('blur');
+    document.querySelector('main').classList.add('blur');
+    boxLogin.classList.add('show');
 }
 
 function createBoxLogin(isFailed) {
@@ -23,7 +25,7 @@ function createBoxLogin(isFailed) {
 
     // configure elements
     boxLogin.setAttribute('id', 'box-login');
-    boxLogin.style.display = 'none';
+    boxLogin.setAttribute('class', '');
 
     formLogin.setAttribute('id', 'form-login');
     formLogin.setAttribute('method', 'post');
@@ -45,7 +47,7 @@ function createBoxLogin(isFailed) {
     buttonCloseLogin.setAttribute('id' , 'button-close');
     buttonCloseLogin.innerHTML = 'return to the home page'
     buttonCloseLogin.addEventListener('click', () => {
-        boxLogin.style.display = 'none';
+        hideBoxLogin();
     });
 
     // append elements
@@ -66,8 +68,14 @@ function createBoxLogin(isFailed) {
     //event on click + echap key boxlogin -> close login window
     formLogin.addEventListener('mouseenter', () => { formIsOverred = true; });
     formLogin.addEventListener('mouseleave', () => { formIsOverred = false; });
-    boxLogin.addEventListener('click', () => { if (!formIsOverred) { boxLogin.style.display = 'none'; } });
-    window.addEventListener('keydown', (event) => { if (event.key == 'Escape') { boxLogin.style.display = 'none'; } });
+    boxLogin.addEventListener('click', () => { if (!formIsOverred) { hideBoxLogin(); } });
+    window.addEventListener('keydown', (event) => { if (event.key == 'Escape') { hideBoxLogin(); } });
 
     return boxLogin;
+}
+
+function hideBoxLogin() {
+    document.getElementById('box-login').classList.remove('show');
+    document.querySelector('header').classList.remove('blur');
+    document.querySelector('main').classList.remove('blur');
 }
