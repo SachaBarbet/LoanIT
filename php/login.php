@@ -53,7 +53,8 @@
         $_SESSION['user'] = [
             'name' => $userName,
             'lastname' => $userLastname,
-            'login' => $userLogin
+            'login' => $userLogin,
+            'lenderID' => $lenderID
         ];
     }
     $_SESSION['tryLogin'] = true;

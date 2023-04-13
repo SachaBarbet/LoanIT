@@ -1,3 +1,4 @@
+<?php require './php/borrows_functions.php';?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,7 +20,17 @@
     </head>
     <body>
         <main>
-            
+            <div id="box-back"><a href="./tables.php"><< BACK</a></div>
+            <div id="box-sections">
+                <section id="section-borrows">
+                    <h3>Your Borrows</h3>
+                    <?php generateBorrowsSection(); ?>
+                </section>
+                <section id="section-resources">
+                    <h3>You can borrow this resources</h3>
+                    <?php generateResourcesSection(); ?>
+                </section>
+            </div>
         </main>
     </body>
 </html>

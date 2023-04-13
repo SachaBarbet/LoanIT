@@ -30,8 +30,8 @@
         exit();
     }
 
-    $tableNameBis = strtolower(rtrim($table, "s"));
-    $reqLine .= " WHERE {$tableNameBis}ID=?;";
+    $tableNameBis = strtolower(rtrim($table, "s")) . 'ID';
+    $reqLine .= " WHERE {$tableNameBis}=?;";
     array_push($updateList, $rowID);
 
     try {

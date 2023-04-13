@@ -26,11 +26,11 @@
     </head>
 
     <body>
-        <header>
-            <a href="./tables.php"><< BACK</a>
-        </header>
 
         <main>
+            <div>
+                <a href="./tables.php"><< BACK</a>
+            </div>
             <form action="./php/insert.php?insertTable=3" method="post" id="form-feedback">
                 <select name="loanID" id="select-feedback-loan">
                     <?php

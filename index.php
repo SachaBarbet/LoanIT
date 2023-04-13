@@ -26,8 +26,8 @@
             <ul id="list-nav">
                 <?php
                     if ($_SESSION['isLogged'] && $_SESSION['isLenderValid']) {
-                        echo '<li class="link"><a>BORROW</a></li>';
-                        echo '<li class="link"><a >FEEDBACK</a></li>';
+                        echo '<li class="link"><a href="borrows.php">MY BORROWS</a></li>';
+                        echo '<li class="link"><a href="feedbacks.php">MY FEEDBACKS</a></li>';
                     }
                 ?>
             </ul>
