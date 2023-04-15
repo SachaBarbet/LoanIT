@@ -1,4 +1,4 @@
-<?php require './php/borrows_functions.php';?>
+<?php require './php/borrows_functions.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,15 +20,16 @@
     </head>
     <body>
         <main>
-            <div id="box-back"><a href="./tables.php"><< BACK</a></div>
+            <div id="box-back"><a href="./index.php"><< BACK</a></div>
             <div id="box-sections">
                 <section id="section-borrows">
                     <h3>Your Borrows</h3>
-                    <?php generateBorrowsSection(); ?>
+                    <div id="box-borrows"><?php generateBorrowsSection(); ?></div>
                 </section>
                 <section id="section-resources">
                     <h3>You can borrow this resources</h3>
-                    <?php generateResourcesSection(); ?>
+                    <div id="box-resources"><?php generateResourcesSection(); ?></div>
+                    <?php require './php/daily_functions.php'; ?>
                 </section>
             </div>
         </main>

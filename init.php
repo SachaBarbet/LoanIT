@@ -23,14 +23,14 @@
     $tablesStruct = [
         "Resources" => ["resourceID", "name", "designation", "qtyStock", "qtyLend"],
         "Lenders" => ["lenderID", "name", "observation", "userID", "activeLoan"],
-        "Loans" => ["loanID", "resourceID", "qtyLent","lenderID", "startDate", "endDate", "trueEndDate", "state"],
+        "Loans" => ["loanID", "lenderID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
         "Feedbacks" => ["feedbackID", "loanID", "date", "feedback", "solution"]
     ];
 
     $tablesStructNoID = [
         "Resources" => ["name", "designation", "qtyStock", "qtyLend"],
         "Lenders" => ["name", "observation", "userID", "activeLoan"],
-        "Loans" => ["resourceID", "qtyLent","lenderID", "startDate", "endDate", "trueEndDate", "state"],
+        "Loans" => ["lenderID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
         "Feedbacks" => ["loanID", "date", "feedback", "solution"]
     ];
 ?>

@@ -16,7 +16,7 @@
         }
 
         $tableLines = [];
-        $tableHead = $tablesStruct[$firstLetterTableName]; //Contient l'entete de notre tableau (le nom des colones)
+        $tableHead = $tablesStruct[$firstLetterTableName]; //Contient l'entete de notre tableau (le nom des colonnes)
         # Pour chaque ligne de la table
         foreach($tableRows as $tableRow) {
             $line = "<tr>";
