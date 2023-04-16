@@ -1,4 +1,4 @@
-<?php require './php/borrows_functions.php'; ?>
+<?php require './php/borrows_functions.php'; require './php/daily_functions.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -29,7 +29,6 @@
                 <section id="section-resources">
                     <h3>You can borrow this resources</h3>
                     <div id="box-resources"><?php generateResourcesSection(); ?></div>
-                    <?php require './php/daily_functions.php'; ?>
                 </section>
             </div>
         </main>

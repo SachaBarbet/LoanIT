@@ -11,14 +11,14 @@
         $reqEnd = ") VALUES (";
 
         $isFirst = true;
-        $qteEmprunts = 0;
+        $qtyToReserv = 0;
         $resID = "";
         foreach($tablesStructNoID[$table] as $tableRows) {
             if(!isset($_POST[$tableRows])) continue;
             $element = htmlspecialchars($_POST[$tableRows]);
             if($table === "Loans") {
                 if($tableRows === "qtyLent") {
-                    $qteEmprunts = $element;
+                    $qtyToReserv = $element;
                 }
                 if($tableRows === "resourceID") {
                     $resID = $element;
@@ -42,27 +42,6 @@
             
             // Comme on est en SQLite, on établi les règles en PHP et non SQL alors quand on ajoute un empreint
             // On prend la quantité empreinté, en l'enlève de la valeur stock et on l'ajoute à la valeur nombre emprunté dans la table ressources
-            try {
-                $pdo = new PDO($connect);
-                $qteStockQuerys = $pdo->query("SELECT qtyStock, qtyLend FROM Resources WHERE resourceID={$resID};");
-                foreach($qteStockQuerys as $qteStockQuery) {
-                    $qteDispo = $qteStockQuery["qtyStock"];
-                    $qteEmprunter = $qteStockQuery["qtyLend"];
-                }
-                $pdo = null;
-            } catch (PDOException $e) {
-                die("Error : " . $e);
-            }
-
-            if($qteDispo >= $qteEmprunts) {
-                $pdo = new PDO($connect);
-                $updateReq = $pdo->prepare("UPDATE Resources SET qtyStock=?, qtyLend=? WHERE resourceID={$resID};");
-                $updateReq->execute(array(($qteDispo - $qteEmprunts), $qteEmprunts));
-                $pdo = null;
-            } else {
-                header("location: ../tables.php?table={$table}");
-                exit;
-            }
         }
 
         $req = $reqStart . $reqEnd . ");";

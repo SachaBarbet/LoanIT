@@ -27,7 +27,7 @@
                 <?php
                     if ($_SESSION['isLogged'] && $_SESSION['isLenderValid']) {
                         echo '<li class="link"><a href="borrows.php">MY BORROWS</a></li>';
-                        echo '<li class="link"><a href="feedbacks.php">MY FEEDBACKS</a></li>';
+                        //echo '<li class="link"><a href="feedbacks.php">MY FEEDBACKS</a></li>';
                     }
                 ?>
             </ul>
@@ -38,8 +38,8 @@
                         if ($_SESSION['isLogged']) {
                             if ($_SESSION['isAdmin']) {
                                 echo '<li><a href="tables.php" id="link-tables">TABLES</a></li>';
-                                echo '<li><a id="link-add-lender">ADD LENDER</a></li>';
-                                echo '<li><a id="link-add-user">ADD USER</a></li>';
+                                //echo '<li><a id="link-add-lender">ADD LENDER</a></li>';
+                                //echo '<li><a id="link-add-user">ADD USER</a></li>';
                             }
                             echo '<li><a href="./php/logout.php" id="link-logout">LOGOUT</a></li>';
                         } else {

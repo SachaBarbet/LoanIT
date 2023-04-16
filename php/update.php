@@ -16,7 +16,7 @@
     $updateList = [];
     $isFirst = true;
     foreach($tablesStructNoID[$table] as $row) {
-        if(isset($_POST[$row]) && !empty($_POST[$row])) {
+        if(isset($_POST[$row]) && (!empty($_POST[$row]) || $_POST[$row] == 0)) {
             $element = htmlspecialchars($_POST[$row]);
             if(!$isFirst) {$reqLine .= ", ";}
             $reqLine .= "{$row}=?";
@@ -33,7 +33,7 @@
     $tableNameBis = strtolower(rtrim($table, "s")) . 'ID';
     $reqLine .= " WHERE {$tableNameBis}=?;";
     array_push($updateList, $rowID);
-
+    echo $reqLine;
     try {
         $pdo = new PDO($connect);
         $req = $pdo->prepare($reqLine);

@@ -21,14 +21,14 @@
     $connectBis = 'sqlite:./data/database.sqlite';
     $connectUsers = 'sqlite:../data/users-data.sqlite';
     $tablesStruct = [
-        "Resources" => ["resourceID", "name", "designation", "qtyStock", "qtyLend"],
+        "Resources" => ["resourceID", "name", "designation", "qtyStock", "qtyLend", "qtyReserv", "qtyLendTot"],
         "Lenders" => ["lenderID", "name", "observation", "userID", "activeLoan"],
         "Loans" => ["loanID", "lenderID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
         "Feedbacks" => ["feedbackID", "loanID", "date", "feedback", "solution"]
     ];
 
     $tablesStructNoID = [
-        "Resources" => ["name", "designation", "qtyStock", "qtyLend"],
+        "Resources" => ["name", "designation", "qtyStock", "qtyLend", "qtyReserv", "qtyLendTot"],
         "Lenders" => ["name", "observation", "userID", "activeLoan"],
         "Loans" => ["lenderID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
         "Feedbacks" => ["loanID", "date", "feedback", "solution"]
