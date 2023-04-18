@@ -35,15 +35,6 @@
             }
         }
 
-        if ($table === "Loans") {
-
-            $qteDispo = 0;
-            $qteEmprunter = 0;
-            
-            // Comme on est en SQLite, on établi les règles en PHP et non SQL alors quand on ajoute un empreint
-            // On prend la quantité empreinté, en l'enlève de la valeur stock et on l'ajoute à la valeur nombre emprunté dans la table ressources
-        }
-
         $req = $reqStart . $reqEnd . ");";
 
         try {

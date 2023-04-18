@@ -71,10 +71,6 @@ section div {
     box-shadow: 0 0 3px var(--color-blck);
 }
 
-#box-borrows {
-    flex: 1;
-}
-
 /*Table*/
 table {
     display: block;
@@ -89,6 +85,7 @@ thead {
     top: 0px;
 }
 
+    /*séparateur entre en-tete et body de la table*/
 tbody:before {
     content: "@";
     display: block;

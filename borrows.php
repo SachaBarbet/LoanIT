@@ -24,13 +24,14 @@
             <div id="box-sections">
                 <section id="section-borrows">
                     <h3>Your Borrows</h3>
-                    <div id="box-borrows"><?php generateBorrowsSection(); ?></div>
+                    <?php generateBorrowsSection(); ?>
                 </section>
                 <section id="section-resources">
                     <h3>You can borrow this resources</h3>
-                    <div id="box-resources"><?php generateResourcesSection(); ?></div>
+                    <?php generateFormToBorrow(); ?>
                 </section>
             </div>
         </main>
+        <script src="./javascript/addBorrow.js"></script>
     </body>
 </html>
