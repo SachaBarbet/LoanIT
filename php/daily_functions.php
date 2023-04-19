@@ -2,7 +2,7 @@
     require './init.php';
 
     $settings = json_decode(file_get_contents('./data/settings.json'), true);
-    $currentDay = '17/04/2023';//date("d/m/Y");
+    $currentDay = date("d/m/Y");
     
     function updateBorrowsState() {
         global $connectBis, $currentDay;

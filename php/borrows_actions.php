@@ -3,10 +3,9 @@
     if (!$_SESSION['isLogged'] || !$_SESSION['isLenderValid']) header('location: ../index.php');
 
     $currentDay = date("d/m/Y");
-
     if (isset($_POST['action']) && !empty($_POST['action'])) {
         $action = $_POST['action'];
-        if (!isset($_POST['loanID']) || empty($_POST['loanID'] || $_POST['action'] == 'add')) {return;}
+        if (($action != 'add') && (!isset($_POST['loanID']) || empty($_POST['loanID']))) {return;}
         switch ($action) {
             case 'active': endBorrow(); break;
             case 'inactive': cancelBorrow(); break;
@@ -24,30 +23,33 @@
         if (!isset($_POST['resourceID']) || empty($_POST['resourceID'])) {header('location: ../borrows.php');}
         $resourceID = $_POST['resourceID'];
         $userID = $_SESSION['user']['lenderID'];
-        $qtyLend = $_POST['qtyLend'] || header('location: ../borrows.php');
-        $startDate = $_POST['startDate'] || header('location: ../borrows.php');
+        $qtyLend = $_POST['qtyLend'];
+        $startDate = $_POST['startDate'];
+        $startDateList = explode("-", $startDate);
+        $startDate = "{$startDateList['2']}/{$startDateList['1']}/{$startDateList['0']}";
         if ($startDate <= $currentDay) {return;}
-        $resource = $pdo->query("SELECT qtyStock FROM Resources WHERE resourceID={$resourceID};")->fetchAll(PDO::FETCH_ASSOC)[0];
-        $qtyAvailable = $resource["qtyStock"];
-        if($qtyAvailable >= $qtyLend) {
-            try {
-                $pdo = new PDO($connect);
-                $pdo->prepare("INSERT INTO Loans (resourceID, lenderID, qtyLent, startDate) VALUES (?, ?, ?, ?);")->execute([$resourceID, $userID, $qtyLend, $startDate]);
-                $pdo->prepare("UPDATE Resources SET qtyStock=qtyStock-?, qtyReserv=qtyReserv+? WHERE resourceID=?;")->execute([$qtyToReserv, $qtyToReserv, $resourceID]);
-                $pdo = null;
-            } catch (PDOException $e) {
-                die($e);
+        try {
+            $pdo = new PDO($connect);
+            $resource = $pdo->query("SELECT qtyStock FROM Resources WHERE resourceID={$resourceID};")->fetchAll(PDO::FETCH_ASSOC)[0];
+            $qtyAvailable = $resource["qtyStock"];
+            if($qtyAvailable >= $qtyLend) {
+                $test = $pdo->prepare("INSERT INTO Loans (resourceID, lenderID, qtyLent, startDate) VALUES (?, ?, ?, ?);")->execute([$resourceID, $userID, $qtyLend, $startDate]);
+                if ($test) {
+                    $pdo->prepare("UPDATE Resources SET qtyStock=qtyStock-?, qtyReserv=qtyReserv+? WHERE resourceID=?;")->execute([$qtyLend, $qtyLend, $resourceID]);
+                }
             }
-        } 
-        header('location: ../borrows.php');
+            $pdo = null;
+        } catch (PDOException $e) {
+            die($e);
+        }
     }
 
     // Annule l'emprunt s'il n'a pas encore commencé
     function cancelBorrow() {
-        global $connectBis;
+        global $connect;
         $loanID = $_POST['loanID'];
         try {
-            $pdo = new PDO($connectBis);
+            $pdo = new PDO($connect);
             $req = $pdo->prepare("SELECT resourceID, qtyLent, state FROM Loans WHERE loanID=?;");
             $req->execute([$loanID]);
             $loan = $req->fetchAll(PDO::FETCH_ASSOC);

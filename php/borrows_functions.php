@@ -1,7 +1,8 @@
 <?php
     require './init.php';
-
     if (!$_SESSION['isLogged'] || !$_SESSION['isLenderValid']) header('location: ../index.php');
+
+    $currentDay = date("d/m/Y");
 
     function generateBorrowsSection() {
         global $connectBis;
@@ -17,7 +18,7 @@
 
         // Génération du tableau des emprunts
         if (count($loans) === 0) {
-            echo '<p>You don\'t have any loan ! It\'s time to start !</p>';
+            echo "<p>You don't have any loan ! It's time to start !</p>";
         } else {
             echo '<table>';
             echo '<thead><tr><th>Resource</th><th>Quantity</th><th>Start date</th><th>End date</th><th>State</th><th></th></tr></thead>';
@@ -71,7 +72,7 @@
     }
 
     function generateFormToBorrow() {
-        global $connectBis;
+        global $connectBis, $currentDay;
         try {
             $pdo = new PDO($connectBis);
             $req = $pdo->query("SELECT resourceID, name, qtyStock FROM Resources WHERE qtyStock > 0;");
@@ -95,12 +96,11 @@
                 echo "<option qty='{$resource['qtyStock']}' value='{$resource['resourceID']}'>{$resource['resourceID']} - {$resource['name']}</option>";
             }
             echo '</select></div>';
-            echo "<div><label for='qtyLend'>Quantity : </label><input name='qtyLend' type='range' min='0' max=''></div>";
-            echo '<div><label for="startDate">Start date: </label><input name="startDate" type="date" required></div>';
-            echo '<input name="add" type="hidden">';
+            echo "<div><label for='qtyLend'>Quantity : </label><input name='qtyLend' type='number' min='1' max='100' required></div>";
+            echo "<div><label for='startDate'>Start date: </label><input name='startDate' type='date' min='{$currentDay}' required></div>";
+            echo '<input name="action" value="add" type="hidden">';
             echo '<input type="submit" value="BORROW">';
-            echo '</form>';
-            
+            echo '</form>';   
         }
     }
 ?>
