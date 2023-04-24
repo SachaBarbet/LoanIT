@@ -27,7 +27,7 @@
                     <?php generateBorrowsSection(); ?>
                 </section>
                 <section id="section-resources">
-                    <h3>You can borrow this resources</h3>
+                    <h3>Add a new borrow</h3>
                     <?php generateFormToBorrow(); ?>
                 </section>
             </div>

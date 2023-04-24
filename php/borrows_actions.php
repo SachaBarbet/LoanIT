@@ -55,7 +55,7 @@
             $loan = $req->fetchAll(PDO::FETCH_ASSOC);
             if (!$loan || !isset($loan[0]['resourceID'])) {$pdo = null; return;}
             if ($loan[0]['state'] != "Inactive") {$pdo = null; return;}
-            $pdo->prepare("UPDATE Resources SET qtyStock=qtyStock+?, qtyReserv=qtyReserv-? WHERE resourceID=?;")->execute([$loan[0]['qtyLend'], $loan[0]['qtyLend'], $loan[0]['resourceID']]);
+            $pdo->prepare("UPDATE Resources SET qtyStock=qtyStock+?, qtyReserv=qtyReserv-? WHERE resourceID=?;")->execute([$loan[0]['qtyLent'], $loan[0]['qtyLent'], $loan[0]['resourceID']]);
             $pdo->prepare("DELETE FROM Loans WHERE loanID=?;")->execute([$loanID]);
             $pdo = null;
         } catch (PDOException $e) {

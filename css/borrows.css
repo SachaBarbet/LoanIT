@@ -148,3 +148,55 @@ td form input[type='submit']:hover {
     background-color: var(--color-white2);
     color: var(--color-main);
 }
+
+.tr-state-inactive .td-state {
+    color: darkblue;
+}
+
+.tr-state-active .td-state {
+    color: darkgreen;
+}
+
+.tr-state-unsold .td-state {
+    color: darkorange;
+}
+
+.tr-state-solded .td-state {
+    color: darkred;
+}
+
+/*New borrow*/
+#section-resources form {
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    align-items: center;
+}
+
+#section-resources form div {
+    margin: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid var(--color-blck);
+    border-radius: var(--border-radius);
+    background-color: var(--color-white);
+    width: 100%;
+}
+
+#section-resources form input[type='submit'] {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid var(--color-main);
+    border-radius: var(--border-radius);
+    background-color: var(--color-main);
+    color: var(--color-white);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#section-resources form input[type='submit']:hover {
+    background-color: var(--color-white2);
+    color: var(--color-main);
+}
