@@ -54,7 +54,7 @@
             <section id="section-main">
                 <div>
                     <h2>Welcome on <strong>Loans Management</strong></h2>
-                    <p>Through this website, you can manage resources, lenders and loans.</p>
+                    <p>Through this website, you can manage resources, users and loans.</p>
                 </div>
                 <article>
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">

@@ -40,7 +40,7 @@
                 <div><a href="./dashboard.php"><< BACK</a></div>
                 <ul>
                     <li id="resources-link" class="link" onclick="switchTable('Resources');">RESOURCES</li>
-                    <li id="lenders-link" class="link" onclick="switchTable('Lenders');">LENDERS</li>
+                    <li id="users-link" class="link" onclick="switchTable('Users');">USERS</li>
                     <li id="loans-link" class="link" onclick="switchTable('Loans');">LOANS</li>
                     <!-- <li id="feedbacks-link" class="link" onclick="switchTable('Feedbacks');">FEEDBACKS</li> -->
                 </ul>

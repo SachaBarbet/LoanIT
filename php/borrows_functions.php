@@ -8,8 +8,8 @@
         global $connectBis;
         try {
             $pdo = new PDO($connectBis);
-            $req = $pdo->prepare("SELECT * FROM Loans WHERE lenderID=?;");
-            $req->execute([$_SESSION['user']['lenderID']]);
+            $req = $pdo->prepare("SELECT * FROM Loans WHERE userID=?;");
+            $req->execute([$_SESSION['user']['userID']]);
             $loans = $req->fetchAll(PDO::FETCH_ASSOC);
             $pdo = null;
         } catch (PDOException $e) {
