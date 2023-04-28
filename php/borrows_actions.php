@@ -3,6 +3,7 @@
     if (!$_SESSION['isLogged'] || !$_SESSION['isLenderValid']) header('location: ../index.php');
 
     $currentDay = date("d/m/Y");
+
     if (isset($_POST['action']) && !empty($_POST['action'])) {
         $action = $_POST['action'];
         if (($action != 'add') && (!isset($_POST['loanID']) || empty($_POST['loanID']))) {return;}
@@ -12,7 +13,7 @@
             case 'unsold': soldBorrow(); break;
             case 'add': addBorrow(); break;
             default:
-                break;   
+                break;
         }
         header('location: ../borrows.php');
     }
@@ -27,7 +28,7 @@
         $startDate = $_POST['startDate'];
         $startDateList = explode("-", $startDate);
         $startDate = "{$startDateList['2']}/{$startDateList['1']}/{$startDateList['0']}";
-        if ($startDate <= $currentDay) {return;}
+        if (strtotime($startDate) <= strtotime($currentDay)) {return;}
         try {
             $pdo = new PDO($connect);
             $resource = $pdo->query("SELECT qtyStock FROM Resources WHERE resourceID={$resourceID};")->fetchAll(PDO::FETCH_ASSOC)[0];
