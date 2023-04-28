@@ -19,7 +19,11 @@
                 $tableNameB = rtrim($tableRow, "ID") . "s";
                 try {
                     $pdo = new PDO($connect);
-                    $req = "SELECT {$tableRow}, name FROM {$tableNameB};";
+                    if ($tableNameB == "resourcesSuppliers") {
+                        $req = "SELECT {$tableRow} FROM {$tableNameB};";
+                    } else {
+                        $req = "SELECT {$tableRow}, name FROM {$tableNameB};";
+                    }
                     $tableIDs = $pdo->query($req);
                     $pdo = null;
                 } catch (PDOException $e) {

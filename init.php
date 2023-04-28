@@ -24,8 +24,8 @@
         "Users" => ["userID", "name", "login", "password", "observation", "type", "activeLoan"],
         "Loans" => ["loanID", "userID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
         "Suppliers" => ["supplierID", "name"],
-        "ResourcesSuppliers" => ["resourceSupplierID", "resourceID", "supplierID", "price"],
-        "PurchaseHistory" => ["purchaseHistoryID", "resourceSupplierID", "quantity", "priceTot", "priceU", "dateOrdered", "dateReceived", "userID"],
+        "Resourcessuppliers" => ["resourcesSupplierID", "resourceID", "supplierID", "price"],
+        "Purchasehistory" => ["purchaceHistoryID", "resourcesSupplierID", "quantity", "priceTot", "priceU", "dateOrdered", "dateReceived", "userID"],
     ];
 
     $tablesStructNoID = [
@@ -33,7 +33,7 @@
         "Users" => ["name", "login", "password", "observation", "type", "activeLoan"],
         "Loans" => ["userID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
         "Suppliers" => ["name"],
-        "ResourcesSuppliers" => ["resourceID", "supplierID", "price"],
-        "PurchaseHistory" => ["resourceSupplierID", "quantity", "priceTot", "priceU", "dateOrdered", "dateReceived", "userID"],
+        "Resourcessuppliers" => ["resourceID", "supplierID", "price"],
+        "Purchasehistory" => ["resourcesSupplierID", "quantity", "priceTot", "priceU", "dateOrdered", "dateReceived", "userID"],
     ];
 ?>
