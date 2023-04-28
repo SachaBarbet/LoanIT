@@ -37,7 +37,7 @@
                     <?php
                         if ($_SESSION['isLogged']) {
                             if ($_SESSION['isAdmin']) {
-                                echo '<li><a href="tables.php" id="link-tables">TABLES</a></li>';
+                                echo '<li><a href="dashboard.php" id="link-dashboard">DASHBOARD</a></li>';
                                 //echo '<li><a id="link-add-lender">ADD LENDER</a></li>';
                                 //echo '<li><a id="link-add-user">ADD USER</a></li>';
                             }

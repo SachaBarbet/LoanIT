@@ -1,0 +1,74 @@
+body {
+    background-color: var(--color-white2);
+}
+
+/*Navigation bar*/
+nav {
+    position: fixed;
+    left: 0;
+    width: 10vw;
+    height: 100vh;
+    z-index: 10;
+    padding-inline: 1vw;
+    padding-block: 2vh;
+    background-color: var(--color-white);
+    box-shadow: 0px 0px 3px var(--color-blck);
+}
+
+nav > a {
+    padding: 5px;
+    font-weight: normal;
+    transition: all 0.2s;
+}
+
+nav > a:hover {
+    font-weight: bold;
+}
+
+nav > p {
+    font-size: x-large;
+    margin-top: 1vh;
+    padding-bottom: 1vh;
+    border-bottom: 1px solid var(--color-blck);
+    margin-bottom: 5vh;
+}
+
+nav ul {
+    width: 100%;
+}
+
+nav ul li p {
+    font-size: large;
+    margin: 5px;
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+}
+
+nav ul li ul li {
+    width: 100%;
+    margin: 3px;
+    margin-left: 10px;
+    color: var(--color-main);
+    border-left: 1px solid var(--color-white);
+    transition: all 0.2s;
+}
+
+nav ul li ul li a, nav ul li ul li button {
+    padding: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+nav ul li ul li:hover {
+    border-left: 1px solid var(--color-main);
+}
+
+
+/*Main*/
+main {
+    position: fixed;
+    right: 0;
+    width: 88vw;
+    height: 100vh;
+    z-index: 5;
+}

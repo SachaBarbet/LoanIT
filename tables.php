@@ -37,7 +37,7 @@
         
         <main>
             <nav>
-                <div><a href="./index.php"><< BACK</a></div>
+                <div><a href="./dashboard.php"><< BACK</a></div>
                 <ul>
                     <li id="resources-link" class="link" onclick="switchTable('Resources');">RESOURCES</li>
                     <li id="lenders-link" class="link" onclick="switchTable('Lenders');">LENDERS</li>
