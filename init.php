@@ -14,23 +14,22 @@
     if (!isset($_SESSION['isAdmin'])) { $_SESSION['isAdmin'] = false; }
     if (!isset($_SESSION['tryLogin'])) { $_SESSION['tryLogin'] = false; }
     if (!isset($_SESSION['isLenderValid'])) { $_SESSION['isLenderValid'] = false; }
-    if (!isset($_SESSION['user'])) { $_SESSION['user'] = ['name' => '', 'lastname' => '', 'login' => '', 'lenderID' => '']; }
+    if (!isset($_SESSION['user'])) { $_SESSION['user'] = ['name' => '', 'login' => '', 'userID' => '']; }
 
     //init database tables
     $connect = 'sqlite:../data/database.sqlite';
     $connectBis = 'sqlite:./data/database.sqlite';
-    $connectUsers = 'sqlite:../data/users-data.sqlite';
     $tablesStruct = [
         "Resources" => ["resourceID", "name", "designation", "qtyStock", "qtyReserv", "qtyLend", "qtyLendTot"],
-        "Lenders" => ["lenderID", "name", "observation", "userID", "activeLoan"],
-        "Loans" => ["loanID", "lenderID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
+        "Users" => ["userID", "name", "login", "password", "observation", "type", "activeLoan"],
+        "Loans" => ["loanID", "userID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
         "Feedbacks" => ["feedbackID", "loanID", "date", "feedback", "solution"]
     ];
 
     $tablesStructNoID = [
         "Resources" => ["name", "designation", "qtyStock", "qtyReserv", "qtyLend", "qtyLendTot"],
-        "Lenders" => ["name", "observation", "userID", "activeLoan"],
-        "Loans" => ["lenderID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
+        "Users" => ["name", "login", "password", "observation", "type", "activeLoan"],
+        "Loans" => ["userID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
         "Feedbacks" => ["loanID", "date", "feedback", "solution"]
     ];
 ?>

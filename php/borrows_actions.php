@@ -22,7 +22,7 @@
         global $connect, $currentDay;
         if (!isset($_POST['resourceID']) || empty($_POST['resourceID'])) {header('location: ../borrows.php');}
         $resourceID = $_POST['resourceID'];
-        $userID = $_SESSION['user']['lenderID'];
+        $userID = $_SESSION['user']['userID'];
         $qtyLend = $_POST['qtyLend'];
         $startDate = $_POST['startDate'];
         $startDateList = explode("-", $startDate);
@@ -33,7 +33,7 @@
             $resource = $pdo->query("SELECT qtyStock FROM Resources WHERE resourceID={$resourceID};")->fetchAll(PDO::FETCH_ASSOC)[0];
             $qtyAvailable = $resource["qtyStock"];
             if($qtyAvailable >= $qtyLend) {
-                $test = $pdo->prepare("INSERT INTO Loans (resourceID, lenderID, qtyLent, startDate) VALUES (?, ?, ?, ?);")->execute([$resourceID, $userID, $qtyLend, $startDate]);
+                $test = $pdo->prepare("INSERT INTO Loans (resourceID, userID, qtyLent, startDate) VALUES (?, ?, ?, ?);")->execute([$resourceID, $userID, $qtyLend, $startDate]);
                 if ($test) {
                     $pdo->prepare("UPDATE Resources SET qtyStock=qtyStock-?, qtyReserv=qtyReserv+? WHERE resourceID=?;")->execute([$qtyLend, $qtyLend, $resourceID]);
                 }
