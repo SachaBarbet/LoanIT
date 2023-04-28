@@ -42,7 +42,9 @@
                     <li id="resources-link" class="link" onclick="switchTable('Resources');">RESOURCES</li>
                     <li id="users-link" class="link" onclick="switchTable('Users');">USERS</li>
                     <li id="loans-link" class="link" onclick="switchTable('Loans');">LOANS</li>
-                    <!-- <li id="feedbacks-link" class="link" onclick="switchTable('Feedbacks');">FEEDBACKS</li> -->
+                    <li id="suppliers-link" class="link" onclick="switchTable('Suppliers');">SUPPLIERS</li>
+                    <li id="resourcessuppliers-link" class="link" onclick="switchTable('Resourcessuppliers');">RESOURCESSUPPLIERS</li>
+                    <li id="purchasehistory-link" class="link" onclick="switchTable('Purchasehistory');">PURCHASEHISTORY</li>
                 </ul>
                 <div></div>
             </nav>

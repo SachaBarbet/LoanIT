@@ -23,13 +23,17 @@
         "Resources" => ["resourceID", "name", "designation", "qtyStock", "qtyReserv", "qtyLend", "qtyLendTot"],
         "Users" => ["userID", "name", "login", "password", "observation", "type", "activeLoan"],
         "Loans" => ["loanID", "userID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
-        "Feedbacks" => ["feedbackID", "loanID", "date", "feedback", "solution"]
+        "Suppliers" => ["supplierID", "name"],
+        "ResourcesSuppliers" => ["resourceSupplierID", "resourceID", "supplierID", "price"],
+        "PurchaseHistory" => ["purchaseHistoryID", "resourceSupplierID", "quantity", "priceTot", "priceU", "dateOrdered", "dateReceived", "userID"],
     ];
 
     $tablesStructNoID = [
         "Resources" => ["name", "designation", "qtyStock", "qtyReserv", "qtyLend", "qtyLendTot"],
         "Users" => ["name", "login", "password", "observation", "type", "activeLoan"],
         "Loans" => ["userID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
-        "Feedbacks" => ["loanID", "date", "feedback", "solution"]
+        "Suppliers" => ["name"],
+        "ResourcesSuppliers" => ["resourceID", "supplierID", "price"],
+        "PurchaseHistory" => ["resourceSupplierID", "quantity", "priceTot", "priceU", "dateOrdered", "dateReceived", "userID"],
     ];
 ?>

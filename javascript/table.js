@@ -1,4 +1,4 @@
-const tablesName = ["table-resources", "table-users", "table-loans"/*, "table-feedbacks"*/];
+const tablesName = ["table-resources", "table-users", "table-loans", "table-suppliers", "table-resourcessuppliers", "table-purchasehistory"];
 
 async function getTable(tableID = null) {
     if (tableID === null) return;
