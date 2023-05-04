@@ -72,3 +72,78 @@ main {
     height: 100vh;
     z-index: 5;
 }
+
+#section-actu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+/*Tables*/
+table {
+    min-width: 250px;
+    margin-top: 20px;
+    border-collapse: collapse;
+    display: block;
+    height: calc(22px*4);
+    overflow: auto;
+}
+
+tbody {
+    display: block;
+    width: 100%;
+}
+
+tr {
+    display: flex;
+    width: 100%;
+}
+
+td {
+    padding: 5px 8px;
+    flex: 1;
+}
+
+#article-top table {
+    width: 33vw;
+}
+
+#article-top tr {
+    margin: 3px 0;
+    border-radius: 4px;
+}
+
+#article-top td {
+    color: var(--color-white);
+    padding: 3px 12px;
+}
+
+#td-top-1 {
+    background-color: #E9BC08;
+}
+
+#td-top-2 {
+    background-color: gray;
+}
+
+#td-top-3 {
+    background-color: #7C3D12;
+}
+
+#tables-stock {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+#tables-stock table {
+    flex: 1;
+}
+
+#td-in-stock {
+    color: green;
+}
+
+#td-out-stock {
+    color: red;
+}

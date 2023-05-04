@@ -10,26 +10,43 @@
     }
 
     // paramètres session
-    if (!isset($_SESSION['isLogged'])) { $_SESSION['isLogged'] = false; }
-    if (!isset($_SESSION['isAdmin'])) { $_SESSION['isAdmin'] = false; }
-    if (!isset($_SESSION['tryLogin'])) { $_SESSION['tryLogin'] = false; }
-    if (!isset($_SESSION['isLenderValid'])) { $_SESSION['isLenderValid'] = false; }
-    if (!isset($_SESSION['user'])) { $_SESSION['user'] = ['name' => '', 'login' => '', 'userID' => '']; }
+    if (!isset($_SESSION['isLogged'])) {
+        $_SESSION['isLogged'] = false;
+    }
+
+    if (!isset($_SESSION['isAdmin'])) {
+        $_SESSION['isAdmin'] = false;
+    }
+
+    if (!isset($_SESSION['tryLogin'])) {
+        $_SESSION['tryLogin'] = false;
+    }
+
+    if (!isset($_SESSION['isLenderValid'])) {
+        $_SESSION['isLenderValid'] = false;
+    }
+
+    if (!isset($_SESSION['user'])) {
+        $_SESSION['user'] = ['name' => '', 'login' => '', 'userID' => ''];
+    }
+
+    if (!isset($_SESSION['popup'])) {
+        $_SESSION['popup'] = ['id' => '', 'icon' => '', 'content' => ''];
+    }
 
     //init database tables
     $connect = 'sqlite:../data/database.sqlite';
     $connectBis = 'sqlite:./data/database.sqlite';
+    
     $tablesStruct = [
         "Resources" => ["resourceID", "name", "designation", "qtyStock", "qtyReserv", "qtyLend", "qtyLendTot"],
         "Users" => ["userID", "name", "login", "password", "observation", "type", "activeLoan"],
         "Loans" => ["loanID", "userID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
-        "Feedbacks" => ["feedbackID", "loanID", "date", "feedback", "solution"]
     ];
 
     $tablesStructNoID = [
         "Resources" => ["name", "designation", "qtyStock", "qtyReserv", "qtyLend", "qtyLendTot"],
         "Users" => ["name", "login", "password", "observation", "type", "activeLoan"],
         "Loans" => ["userID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
-        "Feedbacks" => ["loanID", "date", "feedback", "solution"]
     ];
 ?>

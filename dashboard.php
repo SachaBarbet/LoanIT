@@ -1,5 +1,8 @@
 <?php require 'init.php';
-    if (!$_SESSION['isAdmin']) header('location: ./index.php');
+    if (!$_SESSION['isAdmin']) {
+        header('location: ./index.php');
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +32,6 @@
                 <li>
                     <p>HOME</p>
                     <ul>
-                        <li><button>Terminal</button></li>
                         <li><button>Statistics</button></li>
                     </ul>
                 </li>
@@ -49,7 +51,35 @@
             </ul>
         </nav>
         <main>
-            
+            <section id="section-actu">
+                <article id="article-top">
+                    <h2>Top Resources</h2>
+                    <table>
+                        <tbody>
+                            <?php require './generate/generate_top.php'; ?>
+                        </tbody>
+                    </table>
+                </article>
+
+                <article id="article-stock">
+                    <h2>Resources Status</h2>
+                    <div id="tables-stock">
+                        <table>
+                            <tbody>
+                                <?php require './generate/generate_stock.php'; ?>
+                            </tbody>
+                        </table>
+
+                        <div class="box-separator-vert"></div>
+                        
+                        <table>
+                            <tbody>
+                                <?php require './generate/generate_no_stock.php'; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </section>
         </main>
     </body>
 </html>

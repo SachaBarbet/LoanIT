@@ -14,7 +14,7 @@ function setUpdate(tableID) {
     // On clear la section et on ajoute l'entete
     document.getElementById("section-update").innerHTML = `<div class="first"><button onclick="hideUpdate();"><span class="material-symbols-outlined">close</span></button></div><h3 id='title-update'></h3>`;
     //Form
-    fetch(`../generate/generateUpdate.php?tableName=${tableID}`).then(fetchVal => {
+    fetch(`../generate/generate_update.php?tableName=${tableID}`).then(fetchVal => {
         fetchVal.text().then(value => document.getElementById("section-update").innerHTML += value);
     });
     // le bouton edit est dans le code php

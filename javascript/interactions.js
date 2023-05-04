@@ -1,7 +1,9 @@
 // ------- FONCTIONS
 function setInteractionBar(tableName) {
     // On affiche la bar si ce n'est pas déjà fait
-    if(document.getElementById('box-interaction-bar').style.display != 'flex') document.getElementById('box-interaction-bar').style.display = 'flex';
+    if (document.getElementById('box-interaction-bar').style.display != 'flex') {
+        document.getElementById('box-interaction-bar').style.display = 'flex';
+    }
 
     // Mise à jour des noms de tables dans la bar d'interaction quand on change de table
     document.getElementById('input-clear-table').setAttribute('value', tableName);
@@ -33,7 +35,7 @@ function clickInsert() {
     // Création de la ligne insert
 
     // Requete php pour generer la ligne insert
-    fetch("http://localhost/generate/generateInsert.php?table="+tableNameClick).then((insertRowValue) => {
+    fetch("http://localhost/generate/generate_insert.php?table="+tableNameClick).then((insertRowValue) => {
         insertRowValue.text().then((value) => {
             insertForm.innerHTML = value;
         });

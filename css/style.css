@@ -2,6 +2,7 @@
     --color-blck: #050505;
     --color-secondary: #c0392b;
     --color-main: #17202a;
+    --color-main-darker: #0E1721;
     --color-main2: #e0e5e9;
     --color-main3: #c2d2e2;
     --color-white: #EEEEEE;
@@ -25,24 +26,6 @@
 
 body {
     background-color: var(--color-white);
-}
-
-strong {
-    color: var(--color-main);
-}
-
-.box-separator-vert {
-    height: 66px;
-    width: 1px;
-    background-color: var(--color-main);
-    margin: 0 5%;
-}
-
-.box-separator-hori {
-    height: 2px;
-    width: 50%;
-    border-radius: 50%;
-    background-color: var(--color-main);
 }
 
 button, input[type='submit'] {

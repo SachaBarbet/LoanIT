@@ -1,5 +1,8 @@
 <?php require 'init.php';
-    if (!$_SESSION['isAdmin']) header('location: ./index.php');
+if (!$_SESSION['isAdmin']) {
+    header('location: ./index.php');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,19 +25,14 @@
     </head>
 
     <?php
-        if(isset($_GET["table"])) {
-            require './init.php';
-            if (isset($tablesStruct[ucfirst($_GET['table'])])) {
-                $lowerTable = ucfirst(strtolower($_GET['table']));
-                echo "<body onload='switchTable(\"{$lowerTable}\");'>";
-            } else {
-                header("location: ./tables.php");
-            }
-        } else {
-            echo "<body>";
+        // Définit la balise body (pour le chargement automatique d'une table au chargement de la page)
+        $htmlAttributes = "";
+        if(isset($_GET["table"]) && isset($tablesStruct[ucfirst($_GET['table'])])) {
+            $lowerTable = ucfirst(strtolower($_GET['table']));
+            $htmlAttributes= " onload=\"switchTable('{$lowerTable}');\"";
         }
+        echo "<body{$htmlAttributes}>";
     ?>
-        
         <main>
             <nav>
                 <div><a href="./dashboard.php"><< BACK</a></div>
@@ -42,7 +40,6 @@
                     <li id="resources-link" class="link" onclick="switchTable('Resources');">RESOURCES</li>
                     <li id="users-link" class="link" onclick="switchTable('Users');">USERS</li>
                     <li id="loans-link" class="link" onclick="switchTable('Loans');">LOANS</li>
-                    <!-- <li id="feedbacks-link" class="link" onclick="switchTable('Feedbacks');">FEEDBACKS</li> -->
                 </ul>
                 <div></div>
             </nav>
@@ -60,13 +57,24 @@
                 <p id="p-select" class="show">Select a table to display and manage it !</p>
             </div>
 
-            <section id="section-update">                
+            <section id="section-update">
             </section>
         </main>
+        <!--Box de chargement pour le chargement des tables-->
         <div id="box-loading"><p>Loading data...</p><div></div></div>
-        <div id="box-clear-background"><div id="box-clear"><p>You are about to clear this table !</p><div><button onclick="validClear();">CLEAR</button><button onclick="cancelClear();">CANCEL</button></div></div></div>
+        <!--Clear table-->
+        <div id="box-clear-background">
+            <div id="box-clear">
+                <p>You are about to clear this table !</p>
+                <div>
+                    <button onclick="validClear();">CLEAR</button>
+                    <button onclick="cancelClear();">CANCEL</button>
+                </div>
+            </div>
+        </div>
+        <!--Javascript-->
+        <script src="./javascript/update.js"></script>
+        <script src="./javascript/table.js"></script>
+        <script src="./javascript/interactions.js"></script>
     </body>
-    <script src="./javascript/update.js"></script>
-    <script src="./javascript/table.js"></script>
-    <script src="./javascript/interactions.js"></script>
 </html>

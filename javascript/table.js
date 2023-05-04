@@ -1,10 +1,10 @@
-const tablesName = ["table-resources", "table-users", "table-loans"/*, "table-feedbacks"*/];
+const tablesName = ["table-resources", "table-users", "table-loans"];
 
 async function getTable(tableID = null) {
     if (tableID === null) return;
 
     if (document.getElementById("table-"+tableID.toLowerCase()) === null) {
-        const fetchTable = await fetch(`../generate/generateTable.php?tableName=${tableID}`);
+        const fetchTable = await fetch(`../generate/generate_table.php?tableName=${tableID}`);
         const tableText = await fetchTable.text();
     
         const contentBox = document.getElementById("box-content").innerHTML;
