@@ -352,6 +352,7 @@ select option {
 }
 
 #section-update form input, #section-update form select {
+    box-sizing: content-box;
     height: max(30px, 2vh);
     padding: 5px;
     margin: 5px;

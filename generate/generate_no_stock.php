@@ -1,5 +1,8 @@
 <?php require './init.php';
-
+if (!$_SESSION['isAdmin']) {
+    header('location: ./index.php');
+    exit();
+}
 
 // Génère une liste des articles qui ne sont plus en stock
 try {
@@ -14,7 +17,6 @@ try {
 // Si pas de données
 if (count($qteReq) == 0) {
     echo '<tr><td>NO DATA</td></tr>';
-    exit();
 }
 
 // Sinon

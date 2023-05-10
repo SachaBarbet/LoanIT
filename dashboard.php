@@ -38,8 +38,8 @@
                 <li>
                     <p>INTERACTIONS</p>
                     <ul>
-                        <li><button>Add a user</button></li>
-                        <li><button>Delete a user</button></li>
+                        <li><button id="button-add-user">Add a user</button></li>
+                        <li><button id="button-remove-user">Delete a user</button></li>
                     </ul>
                 </li>
                 <li>
@@ -51,7 +51,7 @@
             </ul>
         </nav>
         <main>
-            <section id="section-actu">
+            <section id="section-stats">
                 <article id="article-top">
                     <h2>Top Resources</h2>
                     <table>
@@ -69,8 +69,6 @@
                                 <?php require './generate/generate_stock.php'; ?>
                             </tbody>
                         </table>
-
-                        <div class="box-separator-vert"></div>
                         
                         <table>
                             <tbody>
@@ -81,5 +79,34 @@
                 </article>
             </section>
         </main>
+        <div id="box-add-user" class="popup">
+            <form action="./php/add_user.php" method="post">
+                <h2>Add a user</h2>
+                <input type="text" name="name" placeholder="User name" >
+                <input type="password" name="password" placeholder="User password" >
+                <select name="type" >
+                    <option value="" disabled selected hidden>Select the user type</option>
+                    <option value="0">0 - User with no type</option>
+                    <option value="1">1 - Lender</option>
+                    <option value="2">2 - Admin</option>
+                </select>
+                <input type="text" placeholder="Observation" name="observation">
+                <input type="submit" value="ADD USER">
+                <button class="button-close-popup" onclick="hidePopup('box-add-user');">click here to close this popup</button>
+            </form>
+        </div>
+        <div id="box-remove-user" class="popup">
+            <form action="./php/remove_user.php" method="post">
+                <h2>Remove a user</h2>
+                <select name="userID">
+                    <option value="" hidden selected disabled>Select a user to remove</option>
+                    <?php require './generate/generate_userid.php'; ?>
+                </select>
+                <input type="submit" value="DELETE USER">
+                <button class="button-close-popup" onclick="hidePopup('box-remove-user');">click here to close this popup</button>
+            </form>
+        </div>
+        <!--Javascript-->
+        <script src="./javascript/popup.js"></script>
     </body>
 </html>

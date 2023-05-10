@@ -20,11 +20,11 @@ if(isset($_GET['tableName']) && isset($tablesStruct[$_GET['tableName']])) {
     }
 
     $tableLines = []; // Va stocker chaque ligne (élément) de notre tableau
-    $tableHead = $tablesStruct[$firstLetterTableName]; //Contient l'entete de notre tableau (le nom des colonnes)
-    # Pour chaque ligne de la table
+    $tableHead = $tablesStruct[$firstLetterTableName]; // Contient l'entete de notre tableau (le nom des colonnes)
+    // Pour chaque ligne de la table
     foreach($tableRows as $tableRow) {
         $line = "<tr>";
-        # Pour chaque colonne de la ligne
+        // Pour chaque colonne de la ligne
         $isCell1 = true; // La premiere valeur est toujours l'ID (la clé primaire) donc on la récupère, ça permet de mettre en form le formulaire d'insert sans l'id qui est en AI
         foreach($tableRow as $cell) {
             if ($isCell1) {
@@ -40,7 +40,7 @@ if(isset($_GET['tableName']) && isset($tablesStruct[$_GET['tableName']])) {
         array_push($tableLines, $line);
     }
 
-    # Génération du HTML
+    // Génération du HTML
     echo "<section id=\"section-{$tableName}\" class=\"section-table\">";
     // table
     echo "<table class=\"table-bdd\" id=\"table-{$tableName}\"><thead><tr>";

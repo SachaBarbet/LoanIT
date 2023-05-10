@@ -14,7 +14,8 @@
 * {
     margin: 0px;
     padding: 0px;
-    font-family: "JetBrains Mono",monospace;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: normal;
     list-style: none;
     color: var(--color-black);
     text-decoration: none;
@@ -24,8 +25,8 @@
     user-select: none;
 }
 
-body {
-    background-color: var(--color-white);
+strong {
+    font-weight: bold;
 }
 
 button, input[type='submit'] {
@@ -34,4 +35,22 @@ button, input[type='submit'] {
 
 .blur {
     filter: blur(4px);
+}
+
+.text-animation {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.fade-in-bottom {
+    animation-name: fade-in-bottom;
+}
+
+@keyframes fade-in-bottom {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    } to {
+        opacity: 1;
+    }
 }

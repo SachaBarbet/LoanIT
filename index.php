@@ -48,13 +48,13 @@
     
         <main>
             <section id="section-main">
-                <h2>Welcome on <strong>Loans Management</strong></h2>
-                <p>Through this website, you can manage resources, users and loans.</p>
+                <h1 class="text-animation fade-in-bottom">Welcome on <strong>Loans Management</strong></h1>
+                <h4 class="text-animation fade-in-bottom">Through this website, you can manage resources, users and loans.</h4>
             </section>
         </main>
         
         <footer>
-            <p>developed by BARBET Sacha</p>
+            <p class="text-animation fade-in-bottom">developed by BARBET Sacha</p>
         </footer>
         <canvas id="dot-box"></canvas>
         <script src="./javascript/loginMenu.js"></script>
@@ -62,9 +62,11 @@
             // Ajoute les scripts js en fonction de l'etat de login
             if (!$_SESSION['isLogged']) {
                 echo '<script src="javascript/login.js"></script>';
+
                 if ($_SESSION['isAdmin']) {
                     echo '<script src="javascript/addLender.js"></script>';
                 }
+
                 if ($_SESSION['tryLogin']) {
                     echo '<script>clickOnLinkLogin(true);</script>';
                 }
@@ -72,8 +74,10 @@
                 echo "<div id='box-popup-login'><span class='material-symbols-outlined'>waving_hand</span><p>Welcome {$_SESSION['user']['name']} !</p></div>";
                 echo "<script>welcomeMsg();</script>";
             }
+
             $_SESSION['tryLogin'] = false;
         ?>
-        <script src="./javascript/floatingDot.js"></script>
+        <!--Javascript-->
+        <script src="./javascript/floating_dot.js"></script>
     </body>
 </html>

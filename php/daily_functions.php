@@ -11,7 +11,7 @@ function updateBorrowsState() {
     // récupération des emprunts et mise à jour
     try {
         $pdo = new PDO($connectBis);
-        $loans = $pdo->query("SELECT * FROM Loans;")->fetchAll(PDO::FETCH_ASSOC);
+        $loans = $pdo->query("SELECT loanID, resourceID, qtyLent, startDate, endDate, state FROM Loans;")->fetchAll(PDO::FETCH_ASSOC);
         $pdo = null;
     } catch (PDOException $e) {
         die($e);

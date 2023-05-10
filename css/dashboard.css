@@ -71,18 +71,33 @@ main {
     width: 83vw;
     height: 100vh;
     z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#section-actu {
+#section-stats {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+}
+
+#section-stats article {
+    margin-block: 5%;
+    padding: 3%;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: 1px 1px 3px var(--color-main);
+}
+
+#section-stats article h2 {
+    padding-bottom: 10px;
+    border-bottom: solid 1px var(--color-main);
 }
 
 /*Tables*/
 table {
     min-width: 250px;
-    margin-top: 20px;
+    margin: 20px;
     border-collapse: collapse;
     display: block;
     height: calc(22px*4);
@@ -102,10 +117,6 @@ tr {
 td {
     padding: 5px 8px;
     flex: 1;
-}
-
-#article-top table {
-    width: 33vw;
 }
 
 #article-top tr {
@@ -146,4 +157,76 @@ td {
 
 #td-out-stock {
     color: red;
+}
+
+
+/*Popups*/
+.popup {
+    background-color: rgba(200, 200, 200, 0.50);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    transition: all 0.5s ease-in-out;
+}
+
+.popup.show {
+    display: flex;
+}
+
+.popup form {
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 3px grey;
+    background-color: var(--color-white);
+    min-width: 400px;
+    max-width: 580px;
+}
+
+.popup form h2 {
+    margin-block: 5%;
+    color: var(--color-main-darker);
+}
+
+.popup form input, .popup form select {
+    box-sizing: content-box;
+    width: 75%;
+    border-radius: 5px;
+    font-size: medium;
+    border: 1px solid var(--color-main-darker);
+    padding: 10px;
+    margin: 1% 0;
+    color: var(--color-main-darker);
+}
+
+.popup form input[type='submit'] {
+    text-transform: capitalize;
+    background-color: var(--color-main-darker);
+    color: var(--color-white);
+    margin: 0;
+    margin-block: 5%;
+    transition: 0.2s;
+}
+
+.popup form input[type='submit']:hover {
+    transition: 0.2s;
+    background-color: var(--color-main3);
+    color: var(--color-main-darker);
+    cursor: pointer;
+}
+
+.button-close-popup {
+    color: var(--color-main-darker);
+    margin-bottom: 40px;
+}
+
+.button-close-popup:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }

@@ -32,6 +32,5 @@
                 </section>
             </div>
         </main>
-        <script src="./javascript/addBorrow.js"></script>
     </body>
 </html>
