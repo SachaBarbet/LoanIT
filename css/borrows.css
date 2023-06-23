@@ -204,3 +204,40 @@ td form input[type='submit']:hover {
     background-color: var(--color-white2);
     color: var(--color-main);
 }
+
+/*Popup*/
+/*Login popup*/
+#box-popup {
+    position: fixed;
+    z-index: 15;
+    top: 70px;
+    left: -600px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 3px;
+    padding: 8px 18px;
+    transition: all 0.5s ease-in-out;
+}
+
+#box-popup p {
+    color: black;
+    text-align: center;
+}
+
+#box-popup span {
+    margin-right: 10px;
+    color: var(--color-main-darker);
+}
+
+#box-popup.show {
+    left: 20px;
+}
+
+.error {
+    background-color: #FC4E4E;
+}
+
+.valid {
+    background-color: #5dc05e;
+}

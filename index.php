@@ -17,7 +17,7 @@
 
         <noscript>Javascript isn't supported by your browser !</noscript>
 
-        <title>Loans Management</title>
+        <title>LoanIT</title>
     </head>
     
     <body>
@@ -48,7 +48,7 @@
     
         <main>
             <section id="section-main">
-                <h1 class="text-animation fade-in-bottom">Welcome on <strong>Loans Management</strong></h1>
+                <h1 class="text-animation fade-in-bottom">Welcome on <strong>LoanIT</strong></h1>
                 <h4 class="text-animation fade-in-bottom">Through this website, you can manage resources, users and loans.</h4>
             </section>
         </main>

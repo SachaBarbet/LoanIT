@@ -41,12 +41,12 @@
     $tablesStruct = [
         "Resources" => ["resourceID", "name", "designation", "qtyStock", "qtyReserv", "qtyLend", "qtyLendTot"],
         "Users" => ["userID", "name", "login", "password", "observation", "type", "activeLoan"],
-        "Loans" => ["loanID", "userID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
+        "Loans" => ["loanID", "userID", "resourceID", "qtyLent", "startDate", "endDate", "duration", "state"],
     ];
 
     $tablesStructNoID = [
         "Resources" => ["name", "designation", "qtyStock", "qtyReserv", "qtyLend", "qtyLendTot"],
         "Users" => ["name", "login", "password", "observation", "type", "activeLoan"],
-        "Loans" => ["userID", "resourceID", "qtyLent", "startDate", "endDate", "state"],
+        "Loans" => ["userID", "resourceID", "qtyLent", "startDate", "endDate", "duration", "state"],
     ];
 ?>

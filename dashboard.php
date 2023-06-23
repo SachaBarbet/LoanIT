@@ -22,7 +22,7 @@
 
         <noscript>Javascript isn't supported by your browser !</noscript>
 
-        <title>Loans Management</title>
+        <title>LoanIT</title>
     </head>
     <body>
         <nav>
