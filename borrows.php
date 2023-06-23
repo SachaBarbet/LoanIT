@@ -1,4 +1,4 @@
-<?php require './php/borrows_functions.php'; require './php/daily_functions.php'; ?>
+<?php require 'init.php';require './php/borrows_functions.php'; require './php/daily_functions.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,5 +32,13 @@
                 </section>
             </div>
         </main>
+        <script src="./javascript/borrow.js"></script>
+        <?php
+            if ($_SESSION['popup']['id'] != '') {
+                echo "<div id='box-popup' class='{$_SESSION['popup']['id']}'><span class='material-symbols-outlined'>{$_SESSION['popup']['icon']}</span><p>{$_SESSION['popup']['content']}</p></div>";
+                echo "<script>popupBorrow();</script>";
+                $_SESSION['popup'] = ['id' => '', 'icon' => '', 'content' => ''];
+            }
+        ?>
     </body>
 </html>

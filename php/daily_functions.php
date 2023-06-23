@@ -17,6 +17,7 @@ function updateBorrowsState() {
         die($e);
     }
 
+
     foreach ($loans as $loan) {
         switch ($loan['state']) {
             case 'Inactive':

@@ -7,6 +7,7 @@ if (!$_SESSION['isLogged'] || !$_SESSION['isLenderValid']) {
 
 // Contient les functions de générations de la page borrows
 $currentDay = date("d/m/Y");
+
 function generateBorrowsSection() {
     global $connectBis;
 
@@ -24,7 +25,7 @@ function generateBorrowsSection() {
         echo "<p>You don't have any loan ! It's time to start !</p>";
     } else {
         echo '<table>';
-        echo '<thead><tr><th>Resource</th><th>Quantity</th><th>Start date</th><th>End date</th><th>State</th><th></th></tr></thead>';
+        echo '<thead><tr><th>Resource</th><th>Quantity</th><th>Start date</th><th>End date</th><th>Duration</th><th>State</th><th></th></tr></thead>';
         echo '<tbody>';
 
         foreach($loans as $loan) {
@@ -69,6 +70,7 @@ function generateBorrowsSection() {
             echo "<td>{$loan['qtyLent']}</td>";
             echo "<td>{$loan['startDate']}</td>";
             echo "<td>{$loan['endDate']}</td>";
+            echo "<td>{$loan['duration']}</td>";
             echo "<td class='td-state'>{$loan['state']}</td>";
             echo "<td>{$formCell}</td>";
             echo '</tr>';
@@ -103,8 +105,9 @@ function generateFormToBorrow() {
         }
         
         echo '</select></div>';
-        echo "<div><label for='qtyLend'>Quantity : </label><input name='qtyLend' type='number' min='1' max='100' required></div>";
+        echo "<div><label for='qtyLend'>Quantity : </label><input name='qtyLend' type='number' min='1' required></div>";
         echo "<div><label for='startDate'>Start date: </label><input name='startDate' type='date' min='{$currentDay}' required></div>";
+        echo "<div><label for='startDate'>Duration: </label><input name='duration' type='number' min='1' required></div>";
         echo '<input name="action" value="add" type="hidden">';
         echo '<input type="submit" value="BORROW">';
         echo '</form>';   

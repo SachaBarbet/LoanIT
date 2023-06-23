@@ -4,7 +4,7 @@ if (!$_SESSION['isLogged'] || !$_SESSION['isLenderValid']) {
     exit();
 }
 
-
+$currentDay = date("d/m/Y");
 // Contient les fonctions pour chaque actions sur les emprunts par un utilisateur (Ajout Modification Annulation Solder ...)
 
 // Nouvel emprunt
@@ -17,11 +17,16 @@ function addBorrow() {
     $resourceID = $_POST['resourceID'];
     $userID = $_SESSION['user']['userID'];
     $qtyLend = $_POST['qtyLend'];
+    $duration = $_POST['duration'];
     $startDate = $_POST['startDate'];
     $startDateList = explode("-", $startDate);
     $startDate = "{$startDateList['2']}/{$startDateList['1']}/{$startDateList['0']}";
+    
+    $strTime1 = DateTime::createFromFormat('!d/m/Y', $startDate)->getTimestamp();
+    $strTime2 = DateTime::createFromFormat('!d/m/Y', date("d/m/Y"))->getTimestamp();
 
-    if (strtotime($startDate) <= strtotime($currentDay)) {
+    if ($strTime1 <= $strTime2) {
+        $_SESSION['popup'] = ['id' => 'error', 'icon' => 'error', 'content' => "Erreur saisie date de début : date minimum {$currentDay}"];
         return;
     }
 
@@ -30,10 +35,13 @@ function addBorrow() {
         $resource = $pdo->query("SELECT qtyStock FROM Resources WHERE resourceID={$resourceID};")->fetchAll(PDO::FETCH_ASSOC)[0];
         $qtyAvailable = $resource["qtyStock"];
         if($qtyAvailable >= $qtyLend) {
-            $test = $pdo->prepare("INSERT INTO Loans (resourceID, userID, qtyLent, startDate) VALUES (?, ?, ?, ?);")->execute([$resourceID, $userID, $qtyLend, $startDate]);
+            $test = $pdo->prepare("INSERT INTO Loans (resourceID, userID, qtyLent, startDate, duration) VALUES (?, ?, ?, ?, ?);")->execute([$resourceID, $userID, $qtyLend, $startDate, $duration]);
             if ($test) {
                 $pdo->prepare("UPDATE Resources SET qtyStock=qtyStock-?, qtyReserv=qtyReserv+? WHERE resourceID=?;")->execute([$qtyLend, $qtyLend, $resourceID]);
             }
+        } else {
+            $_SESSION['popup'] = ['id' => 'error', 'icon' => 'error', 'content' => "Erreur saisie quantité : quantité disponible {$qtyAvailable}"];
+            return;
         }
         $pdo = null;
     } catch (PDOException $e) {
