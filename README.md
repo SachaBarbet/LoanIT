@@ -1,4 +1,4 @@
-# LoansManagement
+# LoanIT
 Management of loans, lenders and resources.
 
 
