@@ -16,7 +16,7 @@
         <link rel="manifest" href="assets/site.webmanifest">
         <noscript>Javascript isn't supported by your browser !</noscript>
 
-        <title>Loans Management</title>
+        <title>LoanIT</title>
     </head>
     <body>
         <main>
